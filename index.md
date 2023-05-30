@@ -1,4 +1,4 @@
-# Pythonで3D CGを作りたい人のためのPyVista入門
+# PythonでCGを作りたい人のためのPyVista入門
 
 ## はじめに
 
