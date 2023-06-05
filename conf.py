@@ -17,8 +17,8 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Scipy 2022 Report'
-copyright = '2022, Tetsuo Koyama'
+project = 'PyVista Report'
+copyright = '2023, Tetsuo Koyama'
 author = 'Tetsuo Koyama'
 
 
