@@ -30,7 +30,11 @@ m = pv.Sphere()
 m.plot()
 ```
 
-TODO 球体の画像を挿入する。
+```{figure} images/hello-world.png
+:alt: PyVistaのHello World
+:width: 400px
+PyVistaのHello World
+```
 
 ウィンドウの表示は環境により多少異なる場合があります。
 ウィンドウが表示されたらインストール成功です。
