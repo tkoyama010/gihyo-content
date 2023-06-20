@@ -21,7 +21,7 @@ PyVistaは `pip` コマンドでインストールすることができます。
 $ pip install pyvista
 ```
 
-インストール後、PyVistaの以下のコードを実行して球体のウィンドウが表示されることを確認してください。
+インストール後、Pythonで以下のコードを実行して図のようなウィンドウが表示されることを確認してください。
 
 ```python
 import pyvsita as pv
