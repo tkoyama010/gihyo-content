@@ -1,3 +1,4 @@
 Sphinx==7.0.1
 furo==2023.5.20
 myst-parser==2.0.0
+pyvista==0.42.3
