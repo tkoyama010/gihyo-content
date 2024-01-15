@@ -9,6 +9,7 @@ jobs:
       PYVISTA_OFF_SCREEN: 'True'
       ALLOW_PLOTTING: true
       SHELLOPTS: 'errexit:pipefail'
+      DISPLAY: ':99.0'
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v5
