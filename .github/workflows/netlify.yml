@@ -11,13 +11,10 @@ jobs:
       SHELLOPTS: 'errexit:pipefail'
     steps:
       - uses: actions/checkout@v3
-      - uses: awalsh128/cache-apt-pkgs-action@latest
-        with:
-          packages: xvfb
-          version: 1.0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - run: sudo apt-get install xvfb
       - run: pip install -r requirements.txt
       - run: make html
       - name: Deploy to Netlify
