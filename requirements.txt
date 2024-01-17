@@ -1,6 +1,6 @@
-cmocean==3.0.3
-colorcet==3.0.1
-enum-tools==0.11.0
+# cmocean==3.0.3
+# colorcet==3.0.1
+# enum-tools==0.11.0
 furo==2023.9.10
 imageio==2.33.1
 imageio-ffmpeg==0.4.9
