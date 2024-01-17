@@ -16,7 +16,7 @@ jupyterlab==4.0.10
 # pypandoc==1.12
 pytest-sphinx==0.5.0
 pyvista==0.43.1
-# scipy==1.11.4
+scipy==1.11.4
 sphinx==7.2.6
 sphinx-autobuild==2021.3.14
 sphinx-copybutton==0.5.2
@@ -26,8 +26,8 @@ sphinx-notfound-page==1.0.0
 sphinx-toolbox==3.5.0
 sphinxcontrib-asciinema==0.4.0
 sphinxcontrib-websupport==1.2.6
-# sympy==1.12
+sympy==1.12
 trame==3.5.0
 trame-vtk==2.6.3
 trame-vuetify==2.3.1
-# trimesh==4.0.8
+trimesh==4.0.8
