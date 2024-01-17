@@ -30,4 +30,4 @@ sphinxcontrib-websupport==1.2.6
 trame==3.5.0
 trame-vtk==2.6.3
 trame-vuetify==2.3.1
-# trimesh==4.0.8
+trimesh==4.0.8
