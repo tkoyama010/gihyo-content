@@ -1,4 +1,4 @@
-fiona==1.9.5
+# fiona==1.9.5
 # furo==2023.9.10
 pyvista[jupyter,trame]==0.43.1
 sphinx==7.2.6
