@@ -1,4 +1,5 @@
 furo==2023.9.10
+networkx==3.2.1
 requests==2.27
 pyvista[jupyter,trame]==0.43.1
 sphinx==7.2.6
