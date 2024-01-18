@@ -1,4 +1,4 @@
-fiona==1.8.21
+fiona==1.9.5
 furo==2023.9.10
 networkx==3.2.1
 pandas==2.1.4
