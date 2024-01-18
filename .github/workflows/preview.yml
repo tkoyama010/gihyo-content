@@ -29,7 +29,6 @@ jobs:
       - name: List
         run: pip list
       - name: Build Documentation
-        working-directory: doc
         run: make html
       - name: Deploy preview
         uses: rossjrw/pr-preview-action@v1
