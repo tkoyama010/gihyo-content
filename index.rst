@@ -31,6 +31,12 @@ PyVistaは `pip` コマンドでインストールすることができます。
     >>> mesh = examples.download_dragon()
     >>> mesh.plot()
 
+.. pyvista-plot::
+
+    import pyvista as pv
+    mesh = pv.Wavelet()
+    mesh.plot()
+
 ウィンドウの表示は環境により多少異なる場合があります。
 ドラゴンが表示されたらインストール成功です。
 
