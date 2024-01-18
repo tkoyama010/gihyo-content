@@ -1,0 +1,37 @@
+name: Deploy PR previews
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+
+concurrency: preview-${{ github.ref }}
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Install VTK
+        run: |
+          pip uninstall vtk -y
+          pip install --extra-index-url https://wheels.vtk.org vtk-osmesa
+      - name: List
+        run: pip list
+      - name: Build Documentation
+        working-directory: doc
+        run: make html
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: '_build/html'
