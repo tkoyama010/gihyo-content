@@ -31,12 +31,6 @@ PyVistaは `pip` コマンドでインストールすることができます。
     >>> mesh = examples.download_dragon()
     >>> mesh.plot()
 
-.. pyvista-plot::
-
-    import pyvista as pv
-    mesh = pv.Wavelet()
-    mesh.plot()
-
 ウィンドウの表示は環境により多少異なる場合があります。
 ドラゴンが表示されたらインストール成功です。
 
@@ -61,13 +55,16 @@ PyVistaでは入門用のデータがパッケージに同封されており、�
 ロードしたテクスチャでテクスチャマッピングを行いましょう。
 テクスチャマッピングの際にはイメージの空間参照を `texture_map_to_plane` メソッドで定義する必要があります。
 
-.. .. pyvista-plot::
-.. 
-..     import pyvista as pv
-.. 
-..     m = pv.Plane
-..     m.texture_map_to_plane(inplace=True)
-..     m.plot(texture=tex)
+.. pyvista-plot::
+
+    import pyvista as pv
+    from pyvista import examples
+
+    mesh = pv.Sphere()
+    tex = examples.download_masonry_texture()
+
+    mesh.texture_map_to_sphere(inplace=True)
+    mesh.plot(texture=tex)
 
 ライティングをしてみよう
 ------------------------

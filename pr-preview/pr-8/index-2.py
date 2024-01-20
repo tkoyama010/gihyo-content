@@ -1,3 +1,4 @@
-import pyvista as pv
-mesh = pv.Wavelet()
-mesh.plot()
+from pyvista import examples
+
+tex = examples.download_puppy_texture()
+tex.plot()
