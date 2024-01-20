@@ -1,3 +1,3 @@
-import pyvista as pv
-mesh = pv.Wavelet()
+from pyvista import examples
+mesh = examples.download_dragon()
 mesh.plot()

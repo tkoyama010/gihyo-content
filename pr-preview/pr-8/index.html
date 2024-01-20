@@ -135,7 +135,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -182,28 +182,34 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          <section id="dynamic-pyvista-examples">
-<h1>Dynamic PyVista Examples<a class="headerlink" href="#dynamic-pyvista-examples" title="Link to this heading">#</a></h1>
-<p>This is a demostration of PyVista's dynamic Sphinx-Gallery scraper implemented
-in <a class="reference external" href="https://github.com/pyvista/pyvista/pull/4569/">https://github.com/pyvista/pyvista/pull/4569/</a></p>
-<p>The dynamic in-browser renderings are made possible by PyVista's <code class="docutils literal notranslate"><span class="pre">pyvista-plot</span></code>
-directive:</p>
-<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">pyvista-plot</span><span class="p">::</span>
-
-    import pyvista as pv
-    mesh = pv.Wavelet()
-    mesh.plot()
+          <section id="pythoncgpyvista">
+<h1>PythonでCGを作りたい人のためのPyVista入門<a class="headerlink" href="#pythoncgpyvista" title="Link to this heading">#</a></h1>
+<p>小山哲央([&#64;tkoyama010](<a class="reference external" href="https://twitter.com/tkoyama010">https://twitter.com/tkoyama010</a>))です。
+今回は私が開発に参加している3次元可視化ツール[PyVista](<a class="reference external" href="https://pyvista.github.io/pyvista-docs-dev-ja/">https://pyvista.github.io/pyvista-docs-dev-ja/</a>)について紹介します。
+PyVistaは科学技術計算の3次元可視化のために開発されたツールですが、CGを作成する機能があります。
+そこで今回はPythonが好きでCGを作ってみたい人に向けてPyVistaでCGを作成する方法を本記事で紹介します。</p>
+<section id="id1">
+<h2>インストールをしてみよう<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>本記事の動作確認に使用したPython、PyVistaのバージョンは以下のとおりです。
+PyVistaは2024年1月現在、Python3.8以上をサポートしています。</p>
+<ul class="simple">
+<li><p>Python 3.11.2</p></li>
+<li><p>PyVista 0.43.1</p></li>
+</ul>
+<p>PyVistaは <cite>pip</cite> コマンドでインストールすることができます。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pyvista
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
-<span class="n">mesh</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Wavelet</span><span class="p">()</span>
-<span class="n">mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<p>インストール後、Pythonで以下のコードを実行して図のようなウィンドウが表示されることを確認してください。</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_dragon</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
@@ -221,6 +227,86 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-1_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Wavelet</span><span class="p">()</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-2_00_00.png" src="_images/index-2_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-2_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+<p>ウィンドウの表示は環境により多少異なる場合があります。
+ドラゴンが表示されたらインストール成功です。</p>
+</section>
+<section id="id2">
+<h2>テクスチャマッピングをしてみよう<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>立方体を描画しましたが、このままでは少し味気ないですね。
+3次元コンピュータグラフィックスでは3Dモデル表面に質感を与えるためにテクスチャマッピングという手法が使用されます。
+そこで、作成した3Dモデルにテクスチャを追加してみましょう。
+テクスチャは自分自身で準備した画像を指定することもできますが、今回はPyVistaで提供されているテクスチャの素材を使用することにしましょう。
+PyVistaでは入門用のデータがパッケージに同封されており、以下のように取得することができます。</p>
+<p><cite>Texture</cite> オブジェクトの <cite>plot()</cite> メソッドを使用することで以下のような子犬のテクスチャが表示されます。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+
+<span class="n">tex</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_puppy_texture</span><span class="p">()</span>
+<span class="n">tex</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-3_00_00.png" src="_images/index-3_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-3_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+<p>ロードしたテクスチャでテクスチャマッピングを行いましょう。
+テクスチャマッピングの際にはイメージの空間参照を <cite>texture_map_to_plane</cite> メソッドで定義する必要があります。</p>
+</section>
+<section id="id3">
+<h2>ライティングをしてみよう<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>テクスチャマッピングをしたことで3Dモデルの質感を表現することができました。</p>
+</section>
+<section id="id4">
+<h2>シェーディングをしてみよう<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+</section>
+<section id="id5">
+<h2>カメラを操作してみよう<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+</section>
+<section id="id6">
+<h2>レンダリングをしてみよう<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+</section>
+<section id="id7">
+<h2>モデリングをしてみよう<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+</section>
+<section id="id8">
+<h2>ファイルからモデルを読み込んでみよう<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+</section>
+<section id="id9">
+<h2>複数のモデルを描画してみよう<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+</section>
+<section id="id10">
+<h2>まとめ<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+</section>
 </section>
 
         </article>
@@ -248,8 +334,36 @@ Interactive Scene</label><div class="sd-tab-content docutils">
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">PythonでCGを作りたい人のためのPyVista入門</a><ul>
+<li><a class="reference internal" href="#id1">インストールをしてみよう</a></li>
+<li><a class="reference internal" href="#id2">テクスチャマッピングをしてみよう</a></li>
+<li><a class="reference internal" href="#id3">ライティングをしてみよう</a></li>
+<li><a class="reference internal" href="#id4">シェーディングをしてみよう</a></li>
+<li><a class="reference internal" href="#id5">カメラを操作してみよう</a></li>
+<li><a class="reference internal" href="#id6">レンダリングをしてみよう</a></li>
+<li><a class="reference internal" href="#id7">モデリングをしてみよう</a></li>
+<li><a class="reference internal" href="#id8">ファイルからモデルを読み込んでみよう</a></li>
+<li><a class="reference internal" href="#id9">複数のモデルを描画してみよう</a></li>
+<li><a class="reference internal" href="#id10">まとめ</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
