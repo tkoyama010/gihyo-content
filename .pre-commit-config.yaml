@@ -12,3 +12,8 @@ repos:
   - id: check-docstring-first
   - id: end-of-file-fixer
   - id: mixed-line-ending
+- repo: https://github.com/adamchainz/blacken-docs
+  rev: "1.16.0"
+  hooks:
+    - id: blacken-docs
+      additional_dependencies: [black==23.*]
