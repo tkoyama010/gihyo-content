@@ -1,3 +1,3 @@
-from pyvista import examples
-mesh = examples.download_dragon()
+import pyvista as pv
+mesh = pv.Sphere()
 mesh.plot()

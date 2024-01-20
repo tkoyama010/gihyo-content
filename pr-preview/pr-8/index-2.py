@@ -1,4 +1,4 @@
 from pyvista import examples
 
-tex = examples.download_puppy_texture()
-tex.plot()
+texture = examples.load_globe_texture()
+texture.plot()

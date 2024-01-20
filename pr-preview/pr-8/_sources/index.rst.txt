@@ -27,28 +27,29 @@ PyVistaは `pip` コマンドでインストールすることができます。
     :include-source: True
     :context:
 
-    >>> from pyvista import examples
-    >>> mesh = examples.download_dragon()
+    >>> import pyvista as pv
+    >>> mesh = pv.Sphere()
     >>> mesh.plot()
 
+これがPyVistaのHello Worldです。
 ウィンドウの表示は環境により多少異なる場合があります。
-ドラゴンが表示されたらインストール成功です。
+球が表示されたらインストール成功です。
 
 テクスチャマッピングをしてみよう
 --------------------------------
 
 3次元コンピュータグラフィックスでは3Dモデル表面に質感を与えるためにテクスチャマッピングという手法が使用されます。
-そこで、作成した3Dモデルにテクスチャを追加してみましょう。
+そこで、先程の3Dモデルにテクスチャを追加してみましょう。
 テクスチャは自分自身で準備した画像を指定することもできますが、今回はPyVistaで提供されているテクスチャの素材を使用することにしましょう。
 PyVistaでは入門用のデータがパッケージに同封されており、以下のように取得することができます。
-`Texture` オブジェクトの `plot()` メソッドを使用することで子犬のテクスチャが表示されます。
+`Texture` オブジェクトの `plot()` メソッドを使用することで煉瓦のテクスチャが表示されます。
 
 .. pyvista-plot::
 
     from pyvista import examples
 
-    tex = examples.download_puppy_texture()
-    tex.plot()
+    texture = examples.load_globe_texture()
+    texture.plot()
 
 ロードしたテクスチャでテクスチャマッピングを行いましょう。
 テクスチャマッピングの際にはイメージの空間参照を `texture_map_to_sphere` メソッドで定義する必要があります。
