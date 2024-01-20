@@ -260,7 +260,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <p>ロードしたテクスチャでテクスチャマッピングを行いましょう。
-テクスチャマッピングの際にはイメージの空間参照を <cite>texture_map_to_plane</cite> メソッドで定義する必要があります。</p>
+テクスチャマッピングの際にはイメージの空間参照を <cite>texture_map_to_sphere</cite> メソッドで定義する必要があります。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
 <span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
 
@@ -290,6 +290,48 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <section id="id3">
 <h2>ライティングをしてみよう<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <p>テクスチャマッピングをしたことで3Dモデルの質感を表現することができました。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+
+<span class="n">cow</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_cow</span><span class="p">()</span>
+<span class="n">cow</span><span class="o">.</span><span class="n">rotate_x</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plotter</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">(</span><span class="n">lighting</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">cow</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="n">floor</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plane</span><span class="p">(</span><span class="n">center</span><span class="o">=</span><span class="p">(</span><span class="o">*</span><span class="n">cow</span><span class="o">.</span><span class="n">center</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">cow</span><span class="o">.</span><span class="n">bounds</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]),</span> <span class="n">i_size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">j_size</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">floor</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+
+<span class="n">UFO</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Light</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">focal_point</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="n">UFO</span><span class="o">.</span><span class="n">positional</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">UFO</span><span class="o">.</span><span class="n">cone_angle</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">UFO</span><span class="o">.</span><span class="n">exponent</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">UFO</span><span class="o">.</span><span class="n">intensity</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">UFO</span><span class="o">.</span><span class="n">show_actor</span><span class="p">()</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add_light</span><span class="p">(</span><span class="n">UFO</span><span class="p">)</span>
+
+<span class="c1"># enable shadows to better demonstrate lighting</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">enable_shadows</span><span class="p">()</span>
+
+<span class="n">plotter</span><span class="o">.</span><span class="n">camera_position</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">22</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.77</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.44</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-4_00_00.png" src="_images/index-4_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-4_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
 </section>
 <section id="id4">
 <h2>シェーディングをしてみよう<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
