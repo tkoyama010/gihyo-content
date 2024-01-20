@@ -412,21 +412,74 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </section>
 <section id="id5">
 <h2>カメラを操作してみよう<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span>
+
+<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">demos</span>
+<span class="n">pl</span> <span class="o">=</span> <span class="n">demos</span><span class="o">.</span><span class="n">orientation_plotter</span><span class="p">()</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">camera_position</span> <span class="o">=</span> <span class="s1">&#39;yz&#39;</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-10">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-6_00_00.png" src="_images/index-6_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-11">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-6_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
 </section>
 <section id="id6">
-<h2>レンダリングをしてみよう<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<h2>ファイルからモデルを読み込んでみよう<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
 </section>
 <section id="id7">
-<h2>モデリングをしてみよう<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<h2>複数のモデルを描画してみよう<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 </section>
 <section id="id8">
-<h2>ファイルからモデルを読み込んでみよう<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<h2>レンダリングをしてみよう<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+<span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+
+<span class="n">cubemap</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_sky_box_cube_map</span><span class="p">()</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;teal&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;silver&#39;</span><span class="p">]</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">set_environment_texture</span><span class="p">(</span><span class="n">cubemap</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)):</span>
+    <span class="n">sphere</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Sphere</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">4</span> <span class="o">-</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">sphere</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">pbr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">metallic</span><span class="o">=</span><span class="n">i</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="n">roughness</span><span class="o">=</span><span class="n">j</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">view_vector</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-12">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-7_00_00.png" src="_images/index-7_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-13">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-7_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
 </section>
 <section id="id9">
-<h2>複数のモデルを描画してみよう<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
-</section>
-<section id="id10">
-<h2>まとめ<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<h2>まとめ<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
 </section>
 </section>
 
@@ -473,11 +526,10 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <li><a class="reference internal" href="#id3">ライティングをしてみよう</a></li>
 <li><a class="reference internal" href="#id4">シェーディングをしてみよう</a></li>
 <li><a class="reference internal" href="#id5">カメラを操作してみよう</a></li>
-<li><a class="reference internal" href="#id6">レンダリングをしてみよう</a></li>
-<li><a class="reference internal" href="#id7">モデリングをしてみよう</a></li>
-<li><a class="reference internal" href="#id8">ファイルからモデルを読み込んでみよう</a></li>
-<li><a class="reference internal" href="#id9">複数のモデルを描画してみよう</a></li>
-<li><a class="reference internal" href="#id10">まとめ</a></li>
+<li><a class="reference internal" href="#id6">ファイルからモデルを読み込んでみよう</a></li>
+<li><a class="reference internal" href="#id7">複数のモデルを描画してみよう</a></li>
+<li><a class="reference internal" href="#id8">レンダリングをしてみよう</a></li>
+<li><a class="reference internal" href="#id9">まとめ</a></li>
 </ul>
 </li>
 </ul>
