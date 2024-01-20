@@ -232,12 +232,11 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </section>
 <section id="id2">
 <h2>テクスチャマッピングをしてみよう<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>立方体を描画しましたが、このままでは少し味気ないですね。
-3次元コンピュータグラフィックスでは3Dモデル表面に質感を与えるためにテクスチャマッピングという手法が使用されます。
+<p>3次元コンピュータグラフィックスでは3Dモデル表面に質感を与えるためにテクスチャマッピングという手法が使用されます。
 そこで、作成した3Dモデルにテクスチャを追加してみましょう。
 テクスチャは自分自身で準備した画像を指定することもできますが、今回はPyVistaで提供されているテクスチャの素材を使用することにしましょう。
-PyVistaでは入門用のデータがパッケージに同封されており、以下のように取得することができます。</p>
-<p><cite>Texture</cite> オブジェクトの <cite>plot()</cite> メソッドを使用することで以下のような子犬のテクスチャが表示されます。</p>
+PyVistaでは入門用のデータがパッケージに同封されており、以下のように取得することができます。
+<cite>Texture</cite> オブジェクトの <cite>plot()</cite> メソッドを使用することで子犬のテクスチャが表示されます。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
 
 <span class="n">tex</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_puppy_texture</span><span class="p">()</span>
@@ -288,8 +287,8 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="id3">
-<h2>ライティングをしてみよう<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<p>テクスチャマッピングをしたことで3Dモデルの質感を表現することができました。</p>
+<h2>ライトオブジェクト<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<p>Lightオブジェクトは3Dレンダリング用のバーチャルライトです。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
@@ -332,9 +331,6 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-4_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-</section>
-<section id="id4">
-<h2>シェーディングをしてみよう<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">import</span> <span class="nn">pyvista</span>
@@ -410,40 +406,14 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </section>
+<section id="id4">
+<h2>ファイルからモデルを読み込んでみよう<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+</section>
 <section id="id5">
-<h2>カメラを操作してみよう<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span>
-
-<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">demos</span>
-<span class="n">pl</span> <span class="o">=</span> <span class="n">demos</span><span class="o">.</span><span class="n">orientation_plotter</span><span class="p">()</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">camera_position</span> <span class="o">=</span> <span class="s1">&#39;yz&#39;</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-10">
-Static Scene</label><div class="sd-tab-content docutils">
-<figure class="align-default">
-<img alt="_images/index-6_00_00.png" src="_images/index-6_00_00.png" />
-</figure>
-</div>
-<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-11">
-Interactive Scene</label><div class="sd-tab-content docutils">
-
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-6_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
-</div>
-</div>
+<h2>複数のモデルを描画してみよう<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 </section>
 <section id="id6">
-<h2>ファイルからモデルを読み込んでみよう<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-</section>
-<section id="id7">
-<h2>複数のモデルを描画してみよう<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
-</section>
-<section id="id8">
-<h2>レンダリングをしてみよう<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<h2>レンダリングをしてみよう<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
 <span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
 <span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
@@ -463,23 +433,26 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-12">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-10">
 Static Scene</label><div class="sd-tab-content docutils">
 <figure class="align-default">
-<img alt="_images/index-7_00_00.png" src="_images/index-7_00_00.png" />
+<img alt="_images/index-6_00_00.png" src="_images/index-6_00_00.png" />
 </figure>
 </div>
-<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-13">
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-11">
 Interactive Scene</label><div class="sd-tab-content docutils">
 
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-7_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-6_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
 </section>
-<section id="id9">
-<h2>まとめ<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<section id="id7">
+<h2>まとめ<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>以上がPyVistaを使用したCGの作り方になります。
+PyVistaのAPIはMatplotlibに影響を受けているため、
+PythonやMatplotlibを使用している人には扱いやすいと思います。</p>
 </section>
 </section>
 
@@ -523,13 +496,11 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <li><a class="reference internal" href="#">PythonでCGを作りたい人のためのPyVista入門</a><ul>
 <li><a class="reference internal" href="#id1">インストールをしてみよう</a></li>
 <li><a class="reference internal" href="#id2">テクスチャマッピングをしてみよう</a></li>
-<li><a class="reference internal" href="#id3">ライティングをしてみよう</a></li>
-<li><a class="reference internal" href="#id4">シェーディングをしてみよう</a></li>
-<li><a class="reference internal" href="#id5">カメラを操作してみよう</a></li>
-<li><a class="reference internal" href="#id6">ファイルからモデルを読み込んでみよう</a></li>
-<li><a class="reference internal" href="#id7">複数のモデルを描画してみよう</a></li>
-<li><a class="reference internal" href="#id8">レンダリングをしてみよう</a></li>
-<li><a class="reference internal" href="#id9">まとめ</a></li>
+<li><a class="reference internal" href="#id3">ライトオブジェクト</a></li>
+<li><a class="reference internal" href="#id4">ファイルからモデルを読み込んでみよう</a></li>
+<li><a class="reference internal" href="#id5">複数のモデルを描画してみよう</a></li>
+<li><a class="reference internal" href="#id6">レンダリングをしてみよう</a></li>
+<li><a class="reference internal" href="#id7">まとめ</a></li>
 </ul>
 </li>
 </ul>
