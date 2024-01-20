@@ -1,3 +1,4 @@
+furo==2023.9.10
 pyvista[jupyter]>=0.43.1
 Sphinx
 sphinx-design
