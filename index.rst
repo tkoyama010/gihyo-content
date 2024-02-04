@@ -38,13 +38,11 @@ PyVistaは `pip` コマンドでインストールすることができます。
 テクスチャマッピングをしてみよう
 --------------------------------
 
-TODO: テクスチャマッピングについて、より正確な方法を説明する。
-
 3次元コンピュータグラフィックスでは3Dモデル表面に質感を与えるためにテクスチャマッピングという手法が使用されます。
 そこで、先程の3Dモデルにテクスチャを追加してみましょう。
 テクスチャは自分自身で準備した画像を指定することもできますが、今回はPyVistaで提供されているテクスチャの素材を使用することにしましょう。
 PyVistaでは入門用のデータがパッケージに同封されており、以下のように取得することができます。
-`Texture` オブジェクトの `plot()` メソッドを使用することで煉瓦のテクスチャが表示されます。
+`Texture` オブジェクトの `plot()` メソッドを使用することで地球のテクスチャが表示されます。
 
 .. pyvista-plot::
 
@@ -54,18 +52,33 @@ PyVistaでは入門用のデータがパッケージに同封されており、�
     texture.plot()
 
 ロードしたテクスチャでテクスチャマッピングを行いましょう。
-テクスチャマッピングの際にはイメージの空間参照を `texture_map_to_sphere` メソッドで定義する必要があります。
+テクスチャマッピングの際にはイメージの空間参照を `active_texture_coordinates` に定義する必要があります。
+
+.. todo::
+
+   説明をもう少し詳しく
 
 .. pyvista-plot::
 
     import pyvista as pv
+    import numpy as np
     from pyvista import examples
 
-    mesh = pv.Sphere()
-    tex = examples.download_masonry_texture()
+    texture = examples.load_globe_texture()
 
-    mesh.texture_map_to_sphere(inplace=True)
-    mesh.plot(texture=tex)
+    sphere = pv.Sphere(
+        radius=1, theta_resolution=120, phi_resolution=120, start_theta=270.001, end_theta=270
+    )
+
+    sphere.active_texture_coordinates = np.zeros((sphere.points.shape[0], 2))
+    for i in range(sphere.points.shape[0]):
+        sphere.active_texture_coordinates[i] = [
+            0.5 + np.arctan2(-sphere.points[i, 0], sphere.points[i, 1]) / (2 * np.pi),
+            0.5 + np.arcsin(sphere.points[i, 2]) / np.pi,
+        ]
+    sphere.plot(texture=texture)
+
+ご覧の通り、地球儀が作成できていることがわかります。
 
 ライトオブジェクト
 ------------------
