@@ -1,5 +1,8 @@
 PythonでCGを作りたい人のためのPyVista入門
 =========================================
+.. todo::
+
+   日食で光の表現をする。
 
 小山哲央(`@tkoyama010 <https://twitter.com/tkoyama010>`_)です。
 今回は私が開発に参加している3次元可視化ツール `PyVista <https://pyvista.github.io/pyvista-docs-dev-ja/>`_ について紹介します。
