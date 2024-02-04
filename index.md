@@ -30,12 +30,6 @@ m = pv.Sphere()
 m.plot()
 ```
 
-```{figure} images/hello-world.png
-:alt: PyVistaのHello World
-:width: 400px
-PyVistaのHello World
-```
-
 ウィンドウの表示は環境により多少異なる場合があります。
 ウィンドウが表示されたらインストール成功です。
 
