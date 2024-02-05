@@ -83,6 +83,23 @@ PyVistaでは入門用のデータがパッケージに同封されており、�
 
 ご覧の通り、地球儀が作成できていることがわかります。
 
+地球に月を追加しよう
+--------------------
+
+.. pyvista-plot::
+
+    import pyvista as pv
+    from pyvista import examples
+    mesh = examples.planets.load_moon()
+    texture = examples.planets.download_moon_surface(texture=True)
+    pl = pv.Plotter()
+    image_path = examples.planets.download_stars_sky_background(
+        load=False
+    )
+    pl.add_background_image(image_path)
+    _ = pl.add_mesh(mesh, texture=texture)
+    pl.show()
+
 太陽の光を表現しよう
 --------------------
 
@@ -157,23 +174,6 @@ PyVistaのLightオブジェクトを使用してレンダリング用のバー�
 
 .. ファイルからモデルを読み込む
 .. ----------------------------
-
-他の惑星も作ろう
-----------------
-
-.. pyvista-plot::
-
-    import pyvista as pv
-    from pyvista import examples
-    mesh = examples.planets.load_moon()
-    texture = examples.planets.download_moon_surface(texture=True)
-    pl = pv.Plotter()
-    image_path = examples.planets.download_stars_sky_background(
-        load=False
-    )
-    pl.add_background_image(image_path)
-    _ = pl.add_mesh(mesh, texture=texture)
-    pl.show()
 
 
 まとめ

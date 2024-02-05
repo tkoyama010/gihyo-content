@@ -306,7 +306,38 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <p>ご覧の通り、地球儀が作成できていることがわかります。</p>
 </section>
 <section id="id5">
-<h2>太陽の光を表現しよう<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<h2>地球に月を追加しよう<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_moon</span><span class="p">()</span>
+<span class="n">texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_moon_surface</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+<span class="n">image_path</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_stars_sky_background</span><span class="p">(</span>
+    <span class="n">load</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add_background_image</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="n">texture</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-4_00_00.png" src="_images/index-4_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-4_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+</section>
+<section id="id6">
+<h2>太陽の光を表現しよう<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
 <p>前節ではテクスチャマッピングをすることで地球儀を作成しました。
 しかし、もう少しリアリティを演出したいですね。
 そこでこの節では地球儀に背景を設定しライトニングを行うことで太陽の光を表現します。
@@ -375,37 +406,6 @@ PyVistaのLightオブジェクトを使用してレンダリング用のバー�
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-6">
-Static Scene</label><div class="sd-tab-content docutils">
-<figure class="align-default">
-<img alt="_images/index-4_00_00.png" src="_images/index-4_00_00.png" />
-</figure>
-</div>
-<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-7">
-Interactive Scene</label><div class="sd-tab-content docutils">
-
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-4_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
-</div>
-</div>
-</section>
-<section id="id6">
-<h2>他の惑星も作ろう<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
-<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
-<span class="n">mesh</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_moon</span><span class="p">()</span>
-<span class="n">texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_moon_surface</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
-<span class="n">image_path</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_stars_sky_background</span><span class="p">(</span>
-    <span class="n">load</span><span class="o">=</span><span class="kc">False</span>
-<span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">add_background_image</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="n">texture</span><span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-<div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-8">
 Static Scene</label><div class="sd-tab-content docutils">
@@ -469,8 +469,8 @@ PythonやMatplotlibを使用している人には扱いやすいと思います�
 <li><a class="reference internal" href="#">PythonでCGを作りたい人のためのPyVista入門</a><ul>
 <li><a class="reference internal" href="#id2">インストール</a></li>
 <li><a class="reference internal" href="#id3">地球儀を作ろう</a></li>
-<li><a class="reference internal" href="#id5">太陽の光を表現しよう</a></li>
-<li><a class="reference internal" href="#id6">他の惑星も作ろう</a></li>
+<li><a class="reference internal" href="#id5">地球に月を追加しよう</a></li>
+<li><a class="reference internal" href="#id6">太陽の光を表現しよう</a></li>
 <li><a class="reference internal" href="#id7">まとめ</a></li>
 </ul>
 </li>
