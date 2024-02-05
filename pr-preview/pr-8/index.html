@@ -190,12 +190,16 @@
         <article role="main">
           <section id="pythoncgpyvista">
 <h1>PythonでCGを作りたい人のためのPyVista入門<a class="headerlink" href="#pythoncgpyvista" title="Link to this heading">#</a></h1>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">課題</p>
+<p>日食で光の表現をする。</p>
+</div>
 <p>小山哲央(<a class="reference external" href="https://twitter.com/tkoyama010">&#64;tkoyama010</a>)です。
 今回は私が開発に参加している3次元可視化ツール <a class="reference external" href="https://pyvista.github.io/pyvista-docs-dev-ja/">PyVista</a> について紹介します。
 PyVistaは科学技術計算の3次元可視化のために開発されたツールですが、CGを作成する機能があります。
 そこで今回はPythonが好きでCGを作ってみたい人に向けてPyVistaでCGを作成する方法を本記事で紹介します。</p>
-<section id="id1">
-<h2>インストールをしてみよう<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<section id="id2">
+<h2>インストール<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p>本記事の動作確認に使用したPython、PyVistaのバージョンは以下のとおりです。
 PyVistaは2024年1月現在、Python3.8以上をサポートしています。</p>
 <ul class="simple">
@@ -231,14 +235,13 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 ウィンドウの表示は環境により多少異なる場合があります。
 球が表示されたらインストール成功です。</p>
 </section>
-<section id="id2">
-<h2>テクスチャマッピングをしてみよう<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>TODO: テクスチャマッピングについて、より正確な方法を説明する。</p>
+<section id="id3">
+<h2>地球儀を作ろう<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <p>3次元コンピュータグラフィックスでは3Dモデル表面に質感を与えるためにテクスチャマッピングという手法が使用されます。
 そこで、先程の3Dモデルにテクスチャを追加してみましょう。
 テクスチャは自分自身で準備した画像を指定することもできますが、今回はPyVistaで提供されているテクスチャの素材を使用することにしましょう。
 PyVistaでは入門用のデータがパッケージに同封されており、以下のように取得することができます。
-<cite>Texture</cite> オブジェクトの <cite>plot()</cite> メソッドを使用することで煉瓦のテクスチャが表示されます。</p>
+<cite>Texture</cite> オブジェクトの <cite>plot()</cite> メソッドを使用することで地球のテクスチャが表示されます。</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
 
 <span class="n">texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">load_globe_texture</span><span class="p">()</span>
@@ -261,15 +264,28 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </div>
 <p>ロードしたテクスチャでテクスチャマッピングを行いましょう。
-テクスチャマッピングの際にはイメージの空間参照を <cite>texture_map_to_sphere</cite> メソッドで定義する必要があります。</p>
+テクスチャマッピングの際にはイメージの空間参照を <cite>active_texture_coordinates</cite> に定義する必要があります。</p>
+<div class="admonition-todo admonition" id="id4">
+<p class="admonition-title">課題</p>
+<p>説明をもう少し詳しく</p>
+</div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
 
-<span class="n">mesh</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Sphere</span><span class="p">()</span>
-<span class="n">tex</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_masonry_texture</span><span class="p">()</span>
+<span class="n">texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">load_globe_texture</span><span class="p">()</span>
 
-<span class="n">mesh</span><span class="o">.</span><span class="n">texture_map_to_sphere</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="n">tex</span><span class="p">)</span>
+<span class="n">sphere</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Sphere</span><span class="p">(</span>
+    <span class="n">radius</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">theta_resolution</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">phi_resolution</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">start_theta</span><span class="o">=</span><span class="mf">270.001</span><span class="p">,</span> <span class="n">end_theta</span><span class="o">=</span><span class="mi">270</span>
+<span class="p">)</span>
+
+<span class="n">sphere</span><span class="o">.</span><span class="n">active_texture_coordinates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">sphere</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="n">sphere</span><span class="o">.</span><span class="n">active_texture_coordinates</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="mf">0.5</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="o">-</span><span class="n">sphere</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">sphere</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span>
+        <span class="mf">0.5</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="n">sphere</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="n">texture</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
@@ -287,35 +303,75 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-3_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
+<p>ご覧の通り、地球儀が作成できていることがわかります。</p>
 </section>
-<section id="id3">
-<h2>ライトオブジェクト<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<p>Lightオブジェクトは3Dレンダリング用のバーチャルライトです。</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<section id="id5">
+<h2>太陽の光を表現しよう<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>前節ではテクスチャマッピングをすることで地球儀を作成しました。
+しかし、もう少しリアリティを演出したいですね。
+そこでこの節では地球儀に背景を設定しライトニングを行うことで太陽の光を表現します。
+PyVistaのLightオブジェクトを使用してレンダリング用のバーチャルライトを設定します。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span>
 <span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
 
-<span class="n">cow</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_cow</span><span class="p">()</span>
-<span class="n">cow</span><span class="o">.</span><span class="n">rotate_x</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">plotter</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">(</span><span class="n">lighting</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span>
-<span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">cow</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
-<span class="n">floor</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plane</span><span class="p">(</span><span class="n">center</span><span class="o">=</span><span class="p">(</span><span class="n">cow</span><span class="o">.</span><span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cow</span><span class="o">.</span><span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">cow</span><span class="o">.</span><span class="n">bounds</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]),</span> <span class="n">i_size</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">j_size</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
-<span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">floor</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+<span class="c1"># Light of the Sun.</span>
+<span class="n">light</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">Light</span><span class="p">()</span>
+<span class="n">light</span><span class="o">.</span><span class="n">set_direction_angle</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">)</span>
 
-<span class="n">UFO</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Light</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">focal_point</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
-<span class="n">UFO</span><span class="o">.</span><span class="n">positional</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">UFO</span><span class="o">.</span><span class="n">cone_angle</span> <span class="o">=</span> <span class="mi">40</span>
-<span class="n">UFO</span><span class="o">.</span><span class="n">exponent</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">UFO</span><span class="o">.</span><span class="n">intensity</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="n">UFO</span><span class="o">.</span><span class="n">show_actor</span><span class="p">()</span>
-<span class="n">plotter</span><span class="o">.</span><span class="n">add_light</span><span class="p">(</span><span class="n">UFO</span><span class="p">)</span>
+<span class="c1"># Load planets</span>
+<span class="n">mercury</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_mercury</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">2439.0</span><span class="p">)</span>
+<span class="n">mercury_texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_mercury_surface</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">venus</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_venus</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">6052.0</span><span class="p">)</span>
+<span class="n">venus_texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_venus_surface</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">earth</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_earth</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">6378.1</span><span class="p">)</span>
+<span class="n">earth_texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">load_globe_texture</span><span class="p">()</span>
+<span class="n">mars</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_mars</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">3397.2</span><span class="p">)</span>
+<span class="n">mars_texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_mars_surface</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">jupiter</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_jupiter</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">71492.0</span><span class="p">)</span>
+<span class="n">jupiter_texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_jupiter_surface</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">saturn</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_saturn</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">60268.0</span><span class="p">)</span>
+<span class="n">saturn_texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_saturn_surface</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># Saturn&#39;s rings range from 7000.0 km to 80000.0 km from the surface of the planet</span>
+<span class="n">inner</span> <span class="o">=</span> <span class="mf">60268.0</span> <span class="o">+</span> <span class="mf">7000.0</span>
+<span class="n">outer</span> <span class="o">=</span> <span class="mf">60268.0</span> <span class="o">+</span> <span class="mf">80000.0</span>
+<span class="n">saturn_rings</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_saturn_rings</span><span class="p">(</span><span class="n">inner</span><span class="o">=</span><span class="n">inner</span><span class="p">,</span> <span class="n">outer</span><span class="o">=</span><span class="n">outer</span><span class="p">,</span> <span class="n">c_res</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">saturn_rings_texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_saturn_rings</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">uranus</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_uranus</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">25559.0</span><span class="p">)</span>
+<span class="n">uranus_texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_uranus_surface</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">neptune</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_neptune</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">24764.0</span><span class="p">)</span>
+<span class="n">neptune_texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_neptune_surface</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pluto</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_pluto</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">1151.0</span><span class="p">)</span>
+<span class="n">pluto_texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_pluto_surface</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="c1"># enable shadows to better demonstrate lighting</span>
-<span class="n">plotter</span><span class="o">.</span><span class="n">enable_shadows</span><span class="p">()</span>
+<span class="c1"># Move planets to a nice position for the plotter. These numbers are not</span>
+<span class="c1"># grounded in reality and are for demonstration purposes only.</span>
+<span class="n">mercury</span><span class="o">.</span><span class="n">translate</span><span class="p">((</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">venus</span><span class="o">.</span><span class="n">translate</span><span class="p">((</span><span class="o">-</span><span class="mf">15000.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">earth</span><span class="o">.</span><span class="n">translate</span><span class="p">((</span><span class="o">-</span><span class="mf">30000.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">mars</span><span class="o">.</span><span class="n">translate</span><span class="p">((</span><span class="o">-</span><span class="mf">45000.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">jupiter</span><span class="o">.</span><span class="n">translate</span><span class="p">((</span><span class="o">-</span><span class="mf">150000.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">saturn</span><span class="o">.</span><span class="n">translate</span><span class="p">((</span><span class="o">-</span><span class="mf">400000.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">saturn_rings</span><span class="o">.</span><span class="n">translate</span><span class="p">((</span><span class="o">-</span><span class="mf">400000.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">uranus</span><span class="o">.</span><span class="n">translate</span><span class="p">((</span><span class="o">-</span><span class="mf">600000.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">neptune</span><span class="o">.</span><span class="n">translate</span><span class="p">((</span><span class="o">-</span><span class="mf">700000.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">plotter</span><span class="o">.</span><span class="n">camera_position</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">22</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.77</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.44</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
-<span class="n">plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="c1"># Add planets to Plotter.</span>
+<span class="n">pl</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">Plotter</span><span class="p">(</span><span class="n">lighting</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+<span class="n">cubemap</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_cubemap_space_16k</span><span class="p">()</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">add_actor</span><span class="p">(</span><span class="n">cubemap</span><span class="o">.</span><span class="n">to_skybox</span><span class="p">())</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">set_environment_texture</span><span class="p">(</span><span class="n">cubemap</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add_light</span><span class="p">(</span><span class="n">light</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">mercury</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="n">mercury_texture</span><span class="p">,</span> <span class="n">smooth_shading</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">venus</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="n">venus_texture</span><span class="p">,</span> <span class="n">smooth_shading</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">earth</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="n">earth_texture</span><span class="p">,</span> <span class="n">smooth_shading</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">mars</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="n">mars_texture</span><span class="p">,</span> <span class="n">smooth_shading</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">jupiter</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="n">jupiter_texture</span><span class="p">,</span> <span class="n">smooth_shading</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">saturn</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="n">saturn_texture</span><span class="p">,</span> <span class="n">smooth_shading</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">saturn_rings</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="n">saturn_rings_texture</span><span class="p">,</span> <span class="n">smooth_shading</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">uranus</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="n">uranus_texture</span><span class="p">,</span> <span class="n">smooth_shading</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">neptune</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="n">neptune_texture</span><span class="p">,</span> <span class="n">smooth_shading</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">pluto</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="n">pluto_texture</span><span class="p">,</span> <span class="n">smooth_shading</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
@@ -333,62 +389,19 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-4_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="kn">import</span> <span class="nn">pyvista</span>
+</section>
+<section id="id6">
+<h2>他の惑星も作ろう<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
 <span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
-
-<span class="n">mesh</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_dragon</span><span class="p">()</span>
-<span class="n">mesh</span><span class="o">.</span><span class="n">rotate_x</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">mesh</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="n">light1</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">Light</span><span class="p">(</span>
-    <span class="n">position</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
-    <span class="n">focal_point</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-    <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.9843</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>  <span class="c1"># Color temp. 5400 K</span>
-    <span class="n">intensity</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_moon</span><span class="p">()</span>
+<span class="n">texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_moon_surface</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+<span class="n">image_path</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_stars_sky_background</span><span class="p">(</span>
+    <span class="n">load</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
-
-<span class="n">light2</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">Light</span><span class="p">(</span>
-    <span class="n">position</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
-    <span class="n">focal_point</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-    <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.83921</span><span class="p">,</span> <span class="mf">0.6666</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>  <span class="c1"># Color temp. 2850 K</span>
-    <span class="n">intensity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="c1"># Add a thin box below the mesh</span>
-<span class="n">bounds</span> <span class="o">=</span> <span class="n">mesh</span><span class="o">.</span><span class="n">bounds</span>
-<span class="n">rnge</span> <span class="o">=</span> <span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">-</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
-
-<span class="n">expand</span> <span class="o">=</span> <span class="mf">1.0</span>
-<span class="n">height</span> <span class="o">=</span> <span class="n">rnge</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.05</span>
-<span class="n">center</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">center</span><span class="p">)</span>
-<span class="n">center</span> <span class="o">-=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">mesh</span><span class="o">.</span><span class="n">center</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">bounds</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">+</span> <span class="n">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]</span>
-
-<span class="n">width</span> <span class="o">=</span> <span class="n">rnge</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">expand</span><span class="p">)</span>
-<span class="n">length</span> <span class="o">=</span> <span class="n">rnge</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">expand</span><span class="p">)</span>
-<span class="n">base_mesh</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">Cube</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
-
-<span class="c1"># rotate base and mesh to get a better view</span>
-<span class="n">base_mesh</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">mesh</span><span class="o">.</span><span class="n">rotate_z</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># create the plotter with custom lighting</span>
-<span class="n">pl</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">Plotter</span><span class="p">(</span><span class="n">lighting</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">800</span><span class="p">))</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">add_light</span><span class="p">(</span><span class="n">light1</span><span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">add_light</span><span class="p">(</span><span class="n">light2</span><span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span>
-    <span class="n">mesh</span><span class="p">,</span>
-    <span class="n">ambient</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
-    <span class="n">diffuse</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-    <span class="n">specular</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-    <span class="n">specular_power</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
-    <span class="n">smooth_shading</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">base_mesh</span><span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">enable_shadows</span><span class="p">()</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">zoom</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add_background_image</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="n">texture</span><span class="p">)</span>
 <span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -405,48 +418,6 @@ Static Scene</label><div class="sd-tab-content docutils">
 Interactive Scene</label><div class="sd-tab-content docutils">
 
     <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-5_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
-</div>
-</div>
-</section>
-<section id="id4">
-<h2>ファイルからモデルを読み込んでみよう<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
-</section>
-<section id="id5">
-<h2>複数のモデルを描画してみよう<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-</section>
-<section id="id6">
-<h2>レンダリングをしてみよう<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
-<span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
-<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
-
-<span class="n">cubemap</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_sky_box_cube_map</span><span class="p">()</span>
-<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;teal&#39;</span><span class="p">,</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;silver&#39;</span><span class="p">]</span>
-
-<span class="n">p</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
-<span class="n">p</span><span class="o">.</span><span class="n">set_environment_texture</span><span class="p">(</span><span class="n">cubemap</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">product</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)):</span>
-    <span class="n">sphere</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Sphere</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">4</span> <span class="o">-</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
-    <span class="n">p</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">sphere</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">pbr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">metallic</span><span class="o">=</span><span class="n">i</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="n">roughness</span><span class="o">=</span><span class="n">j</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span>
-
-<span class="n">p</span><span class="o">.</span><span class="n">view_vector</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-<span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-<div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-10">
-Static Scene</label><div class="sd-tab-content docutils">
-<figure class="align-default">
-<img alt="_images/index-6_00_00.png" src="_images/index-6_00_00.png" />
-</figure>
-</div>
-<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-11">
-Interactive Scene</label><div class="sd-tab-content docutils">
-
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-6_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
 </section>
@@ -496,12 +467,10 @@ PythonやMatplotlibを使用している人には扱いやすいと思います�
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">PythonでCGを作りたい人のためのPyVista入門</a><ul>
-<li><a class="reference internal" href="#id1">インストールをしてみよう</a></li>
-<li><a class="reference internal" href="#id2">テクスチャマッピングをしてみよう</a></li>
-<li><a class="reference internal" href="#id3">ライトオブジェクト</a></li>
-<li><a class="reference internal" href="#id4">ファイルからモデルを読み込んでみよう</a></li>
-<li><a class="reference internal" href="#id5">複数のモデルを描画してみよう</a></li>
-<li><a class="reference internal" href="#id6">レンダリングをしてみよう</a></li>
+<li><a class="reference internal" href="#id2">インストール</a></li>
+<li><a class="reference internal" href="#id3">地球儀を作ろう</a></li>
+<li><a class="reference internal" href="#id5">太陽の光を表現しよう</a></li>
+<li><a class="reference internal" href="#id6">他の惑星も作ろう</a></li>
 <li><a class="reference internal" href="#id7">まとめ</a></li>
 </ul>
 </li>
