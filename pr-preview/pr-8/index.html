@@ -192,25 +192,25 @@
 <h1>PythonでCGを作りたい人のためのPyVista入門<a class="headerlink" href="#pythoncgpyvista" title="Link to this heading">#</a></h1>
 <div class="admonition-todo admonition" id="id1">
 <p class="admonition-title">課題</p>
-<p>日食で光の表現をする。</p>
+<p>日食で光の表現をする．</p>
 </div>
-<p>小山哲央(<a class="reference external" href="https://twitter.com/tkoyama010">&#64;tkoyama010</a>)です。
-今回は私が開発に参加している3次元可視化ツール <a class="reference external" href="https://pyvista.github.io/pyvista-docs-dev-ja/">PyVista</a> について紹介します。
-PyVistaは科学技術計算の3次元可視化のために開発されたツールですが、CGを作成する機能があります。
-そこで今回はPythonが好きでCGを作ってみたい人に向けてPyVistaでCGを作成する方法を本記事で紹介します。</p>
+<p>小山哲央(<a class="reference external" href="https://twitter.com/tkoyama010">&#64;tkoyama010</a>)です．
+今回は私が開発に参加している3次元可視化ツール <a class="reference external" href="https://pyvista.github.io/pyvista-docs-dev-ja/">PyVista</a> について紹介します．
+PyVistaは科学技術計算の3次元可視化のために開発されたツールですが，CGを作成する機能があります．
+そこで今回はPythonが好きでCGを作ってみたい人に向けてPyVistaでCGを作成する方法を本記事で紹介します．</p>
 <section id="id2">
 <h2>インストール<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>本記事の動作確認に使用したPython、PyVistaのバージョンは以下のとおりです。
-PyVistaは2024年1月現在、Python3.8以上をサポートしています。</p>
+<p>本記事の動作確認に使用したPython，PyVistaのバージョンは以下のとおりです．
+PyVistaは2024年1月現在，Python3.8以上をサポートしています．</p>
 <ul class="simple">
 <li><p>Python 3.11.2</p></li>
 <li><p>PyVista 0.43.1</p></li>
 </ul>
-<p>PyVistaは <cite>pip</cite> コマンドでインストールすることができます。</p>
+<p>PyVistaは <cite>pip</cite> コマンドでインストールすることができます．</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pyvista
 </pre></div>
 </div>
-<p>インストール後、Pythonで以下のコードを実行して図のようなウィンドウが表示されることを確認してください。</p>
+<p>インストール後，Pythonで以下のコードを実行して図のようなウィンドウが表示されることを確認してください．</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Sphere</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
@@ -231,17 +231,17 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-1_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p>これがPyVistaのHello Worldです。
-ウィンドウの表示は環境により多少異なる場合があります。
-球が表示されたらインストール成功です。</p>
+<p>これがPyVistaのHello Worldです．
+ウィンドウの表示は環境により多少異なる場合があります．
+球が表示されたらインストール成功です．</p>
 </section>
 <section id="id3">
 <h2>地球儀を作ろう<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<p>3次元コンピュータグラフィックスでは3Dモデル表面に質感を与えるためにテクスチャマッピングという手法が使用されます。
-そこで、先程の3Dモデルにテクスチャを追加してみましょう。
-テクスチャは自分自身で準備した画像を指定することもできますが、今回はPyVistaで提供されているテクスチャの素材を使用することにしましょう。
-PyVistaでは入門用のデータがパッケージに同封されており、以下のように取得することができます。
-<cite>Texture</cite> オブジェクトの <cite>plot()</cite> メソッドを使用することで地球のテクスチャが表示されます。</p>
+<p>3次元コンピュータグラフィックスでは3Dモデル表面に質感を与えるためにテクスチャマッピングという手法が使用されます．
+そこで，先程の3Dモデルにテクスチャを追加してみましょう．
+テクスチャは自分自身で準備した画像を指定することもできますが，今回はPyVistaで提供されているテクスチャの素材を使用することにしましょう．
+PyVistaでは入門用のデータがパッケージに同封されており，以下のように取得することができます．
+<cite>Texture</cite> オブジェクトの <cite>plot()</cite> メソッドを使用することで地球のテクスチャが表示されます．</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
 
 <span class="n">texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">load_globe_texture</span><span class="p">()</span>
@@ -263,8 +263,8 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-2_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p>ロードしたテクスチャでテクスチャマッピングを行いましょう。
-テクスチャマッピングの際にはイメージの空間参照を <cite>active_texture_coordinates</cite> に定義する必要があります。</p>
+<p>ロードしたテクスチャでテクスチャマッピングを行いましょう．
+テクスチャマッピングの際にはイメージの空間参照を <cite>active_texture_coordinates</cite> に定義する必要があります．</p>
 <div class="admonition-todo admonition" id="id4">
 <p class="admonition-title">課題</p>
 <p>説明をもう少し詳しく</p>
@@ -303,10 +303,12 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-3_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p>ご覧の通り、地球儀が作成できていることがわかります。</p>
+<p>ご覧の通り，地球儀が作成できていることがわかります．</p>
 </section>
 <section id="id5">
 <h2>地球に月を追加しよう<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<p>PyVistaでは複数オブジェクトを描画することも可能です．
+次に，月を追加しましょう．</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
 <span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
 <span class="n">mesh</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_moon</span><span class="p">()</span>
@@ -338,10 +340,10 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </section>
 <section id="id6">
 <h2>太陽の光を表現しよう<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<p>前節ではテクスチャマッピングをすることで地球儀を作成しました。
-しかし、もう少しリアリティを演出したいですね。
-そこでこの節では地球儀に背景を設定しライトニングを行うことで太陽の光を表現します。
-PyVistaのLightオブジェクトを使用してレンダリング用のバーチャルライトを設定します。</p>
+<p>前節ではテクスチャマッピングをすることで地球儀を作成しました．
+しかし，もう少しリアリティを演出したいですね．
+そこでこの節では地球儀に背景を設定しライトニングを行うことで太陽の光を表現します．
+PyVistaのLightオブジェクトを使用してレンダリング用のバーチャルライトを設定します．</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span>
 <span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
 
@@ -455,10 +457,10 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </section>
 <section id="id8">
 <h2>まとめ<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
-<p>以上がPyVistaを使用したCGの作り方になります。
-PyVistaのAPIはMatplotlibに影響を受けているため、
-PythonやMatplotlibを使用している人には扱いやすいと思います。
-Matplotlibでは3Dの描画に難がありましたが、PyVistaを使用することでそれが容易になりました。</p>
+<p>以上がPyVistaを使用したCGの作り方になります．
+PyVistaのAPIはMatplotlibに影響を受けているため，
+PythonやMatplotlibを使用している人には扱いやすいと思います．
+Matplotlibでは3Dの描画に難がありましたが，PyVistaを使用することでそれが容易になりました．</p>
 </section>
 </section>
 
