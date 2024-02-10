@@ -13,7 +13,7 @@ PyVistaは科学技術計算の3次元可視化のために開発されたツー
 ------------
 
 本記事の動作確認に使用したPython，PyVistaのバージョンは以下のとおりです．
-PyVistaは2024年1月現在，Python3.8以上をサポートしています．
+PyVistaは2024年2月現在，Python3.8以上をサポートしています．
 
 * Python 3.11.2
 * PyVista 0.43.1
@@ -167,113 +167,24 @@ Matplotlibは2Dプロットに特化しているため，
 3Dの描画に難がありましたが．
 PyVistaを使用することでそれが容易になりました．
 
-.. レンダリング
-.. ------------
-
-.. .. pyvista-plot::
+.. ## プロフィール
 ..
-..     from itertools import product
-..     import pyvista as pv
-..     from pyvista import examples
+.. ```{figure} images/profile.jpg
+.. :alt: アイコン
+.. :width: 100px
+.. :align: left
+.. ```
 ..
-..     cubemap = examples.download_sky_box_cube_map()
-..     colors = ['red', 'teal', 'black', 'orange', 'silver']
+.. [@tkoyam010](https://twitter.com/tkoyama010)というハンドル名で活動。
+.. 都内のIT企業で数値シミュレーションソフトの開発と受託解析を行うシステムエンジニアとして働く。
 ..
-..     p = pv.Plotter()
-..     p.set_environment_texture(cubemap)
+.. 可視化ライブラリ [PyVista](https://pyvista.github.io/pyvista-docs-dev-ja/) のメンテナ兼ドキュメント翻訳者。
+.. SciPy 2023 チュートリアル座長。
 ..
-..     for i, j in product(range(5), range(6)):
-..         sphere = pv.Sphere(radius=0.5, center=(0.0, 4 - i, j))
-..         p.add_mesh(sphere, color=colors[i], pbr=True, metallic=i / 4, roughness=j / 5)
+.. 著書に『[Pythonによる有限要素法 実装ノート](https://www.amazon.co.jp/dp/B09SPMYZN4)』がある。
 ..
-..     p.view_vector((-1, 0, 0), (0, 1, 0))
-..     p.show()
-
-
-.. .. pyvista-plot::
+.. Facebook：[tetsuo.koyama.94](https://www.facebook.com/tetsuo.koyama.94)
 ..
-..     import numpy as np
+.. Twitter：[@tkoyama010](https://twitter.com/tkoyama010)
 ..
-..     import pyvista as pv
-..     from pyvista import examples
-..
-..     cow = examples.download_cow()
-..     cow.rotate_x(90, inplace=True)
-..     plotter = pv.Plotter(lighting='none', window_size=(1000, 1000))
-..     plotter.add_mesh(cow, color='white')
-..     floor = pv.Plane(center=(cow.center[0], cow.center[1], cow.bounds[-2]), i_size=30, j_size=25)
-..     plotter.add_mesh(floor, color='green')
-..
-..     UFO = pv.Light(position=(0, 0, 10), focal_point=(0, 0, 0), color='white')
-..     UFO.positional = True
-..     UFO.cone_angle = 40
-..     UFO.exponent = 10
-..     UFO.intensity = 3
-..     UFO.show_actor()
-..     plotter.add_light(UFO)
-..
-..     # enable shadows to better demonstrate lighting
-..     plotter.enable_shadows()
-..
-..     plotter.camera_position = [(28, 30, 22), (0.77, 0, -0.44), (0, 0, 1)]
-..     plotter.show()
-..
-.. .. pyvista-plot::
-..
-..     import numpy as np
-..
-..     import pyvista
-..     from pyvista import examples
-..
-..     mesh = examples.download_dragon()
-..     mesh.rotate_x(90, inplace=True)
-..     mesh.rotate_z(120, inplace=True)
-..
-..     light1 = pyvista.Light(
-..         position=(0, 0.2, 1.0),
-..         focal_point=(0, 0, 0),
-..         color=[1.0, 1.0, 0.9843, 1.0],  # Color temp. 5400 K
-..         intensity=0.3,
-..     )
-..
-..     light2 = pyvista.Light(
-..         position=(0, 1.0, 1.0),
-..         focal_point=(0, 0, 0),
-..         color=[1.0, 0.83921, 0.6666, 1.0],  # Color temp. 2850 K
-..         intensity=1,
-..     )
-..
-..     # Add a thin box below the mesh
-..     bounds = mesh.bounds
-..     rnge = (bounds[1] - bounds[0], bounds[3] - bounds[2], bounds[5] - bounds[4])
-..
-..     expand = 1.0
-..     height = rnge[2] * 0.05
-..     center = np.array(mesh.center)
-..     center -= [0, 0, mesh.center[2] - bounds[4] + height / 2]
-..
-..     width = rnge[0] * (1 + expand)
-..     length = rnge[1] * (1 + expand)
-..     base_mesh = pyvista.Cube(center, width, length, height)
-..
-..     # rotate base and mesh to get a better view
-..     base_mesh.rotate_z(30, inplace=True)
-..     mesh.rotate_z(30, inplace=True)
-..
-..     # create the plotter with custom lighting
-..     pl = pyvista.Plotter(lighting=None, window_size=(800, 800))
-..     pl.add_light(light1)
-..     pl.add_light(light2)
-..     pl.add_mesh(
-..         mesh,
-..         ambient=0.2,
-..         diffuse=0.5,
-..         specular=0.5,
-..         specular_power=90,
-..         smooth_shading=True,
-..         color='orange',
-..     )
-..     pl.add_mesh(base_mesh)
-..     pl.enable_shadows()
-..     pl.camera.zoom(1.5)
-..     pl.show()
+.. GitHub：[tkoyama010](https://github.com/tkoyama010/)
