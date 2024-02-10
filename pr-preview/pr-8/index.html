@@ -473,6 +473,13 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </section>
 <section id="id12">
 <h2>照明をカスタムしてみる<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<p>pyvista.Plotter クラスには，既定の照明システム用に次の3つのオプションがあります．</p>
+<ul class="simple">
+<li><p>ヘッドライトと4つのカメラライトで構成されたライトキット</p></li>
+<li><p>カメラの周囲に配置された3つのライトを含む照明システム，</p></li>
+<li><p>照明なし．</p></li>
+</ul>
+<p>メッシュのカラーにエンコードされた深度情報がない場合，正確に表示するには適切なライティング設定が最も重要になります．</p>
 <p>ルーシーエンジェルデータセットをカスタム照明でプロットします．
 &quot;flame&quot; で光をつくります
 シーンライトを作成します．</p>
@@ -514,7 +521,44 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="id13">
-<h2>物理ベースレンダリングをしてみる<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<h2>月を地球の周りに回転させてみる<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<p>シーンを周回します．
+軌道を描くには，まずシーンを表示し，プロッターを .show(auto_close=False) で開いたままにしておく必要があります．
+また， pv.Plotter(off_screen=True) を設定する必要があるかもしれません．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_st_helens</span><span class="p">()</span><span class="o">.</span><span class="n">warp_by_scalar</span><span class="p">()</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">lighting</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">zoom</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">auto_close</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-16">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-9_00_00.png" src="_images/index-9_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-17" name="sd-tab-set-8" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-17">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-9_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">generate_orbital_path</span><span class="p">(</span><span class="n">n_points</span><span class="o">=</span><span class="mi">36</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">mesh</span><span class="o">.</span><span class="n">length</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">open_gif</span><span class="p">(</span><span class="s2">&quot;orbit.gif&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">orbit_on_path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">write_frames</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id14">
+<h2>物理ベースレンダリングをしてみる<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
 <p>VTK9は物理ベースレンダリング(PBR)を導入しており，その機能をPyVistaで公開しています．詳細については blog about PBR をお読みください．
 PBRは pyvista.PolyData に対してのみサポートされており， add_mesh の pbr キーワード引数を介して起動できます．また， metallic および roughness 引数を使用してさらに制御できます．
 この機能を，彫像の高品質メッシュを金属のようにレンダリングすることで示しましょう．</p>
@@ -542,24 +586,24 @@ PBRは pyvista.PolyData に対してのみサポートされており， add_mes
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-16">
+<input checked="checked" id="sd-tab-item-18" name="sd-tab-set-9" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-18">
 Static Scene</label><div class="sd-tab-content docutils">
 <figure class="align-default">
-<img alt="_images/index-9_00_00.png" src="_images/index-9_00_00.png" />
+<img alt="_images/index-10_00_00.png" src="_images/index-10_00_00.png" />
 </figure>
 </div>
-<input id="sd-tab-item-17" name="sd-tab-set-8" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-17">
+<input id="sd-tab-item-19" name="sd-tab-set-9" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-19">
 Interactive Scene</label><div class="sd-tab-content docutils">
 
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-9_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-10_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
 </section>
 <section id="minecraft">
 <h2>Minecraftのような洞窟を作成してみる<a class="headerlink" href="#minecraft" title="Link to this heading">#</a></h2>
-<div class="admonition-todo admonition" id="id14">
+<div class="admonition-todo admonition" id="id15">
 <p class="admonition-title">課題</p>
 <p>フィルタの説明をする．</p>
 </div>
@@ -588,24 +632,24 @@ Minecraftなどのビデオゲームでは，Perlinノイズを使用して地�
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-18" name="sd-tab-set-9" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-18">
+<input checked="checked" id="sd-tab-item-20" name="sd-tab-set-10" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-20">
 Static Scene</label><div class="sd-tab-content docutils">
 <figure class="align-default">
-<img alt="_images/index-10_00_00.png" src="_images/index-10_00_00.png" />
+<img alt="_images/index-11_00_00.png" src="_images/index-11_00_00.png" />
 </figure>
 </div>
-<input id="sd-tab-item-19" name="sd-tab-set-9" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-19">
+<input id="sd-tab-item-21" name="sd-tab-set-10" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-21">
 Interactive Scene</label><div class="sd-tab-content docutils">
 
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-10_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-11_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
 </section>
-<section id="id15">
-<h2>インタラクティブにパラメータを修正しよう<a class="headerlink" href="#id15" title="Link to this heading">#</a></h2>
-<div class="admonition-todo admonition" id="id16">
+<section id="id16">
+<h2>インタラクティブにパラメータを修正してみる<a class="headerlink" href="#id16" title="Link to this heading">#</a></h2>
+<div class="admonition-todo admonition" id="id17">
 <p class="admonition-title">課題</p>
 <p>毎回パラメータを修正してPythonを実行すのは面倒であることを伝える．</p>
 </div>
@@ -628,23 +672,60 @@ pyvista.Plotter.add_slider_widget() メソッドおよび pyvista.Plotter.clear_
 </pre></div>
 </div>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-20" name="sd-tab-set-10" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-20">
+<input checked="checked" id="sd-tab-item-22" name="sd-tab-set-11" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-22">
 Static Scene</label><div class="sd-tab-content docutils">
 <figure class="align-default">
-<img alt="_images/index-11_00_00.png" src="_images/index-11_00_00.png" />
+<img alt="_images/index-12_00_00.png" src="_images/index-12_00_00.png" />
 </figure>
 </div>
-<input id="sd-tab-item-21" name="sd-tab-set-10" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-21">
+<input id="sd-tab-item-23" name="sd-tab-set-11" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-23">
 Interactive Scene</label><div class="sd-tab-content docutils">
 
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-11_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-12_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
 </section>
-<section id="id17">
-<h2>まとめ<a class="headerlink" href="#id17" title="Link to this heading">#</a></h2>
+<section id="id18">
+<h2>外部のファイルからデータを読み込んでみる<a class="headerlink" href="#id18" title="Link to this heading">#</a></h2>
+<p>glTFファイルをPyVistaのプロッティングシーンに直接インポートできます．
+glTFフォーマットの詳細については， <a class="reference external" href="https://www.khronos.org/gltf/">https://www.khronos.org/gltf/</a> を参照してください．
+まず，サンプルをダウンロードします．
+なお，ここではハイダイナミックレンジのテクスチャを使用していますが，
+これはglTFファイルが一般的に物理ベースのレンダリングを含んでおり，VTK v9がハイダイナミックレンジのテクスチャをサポートしているためです．
+プロッタを設定し，環境テクスチャを有効にします． これは，ダメージを受けたヘルメットの例のように，物理ベースのレンダリングが可能なメッシュに有効です．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span>
+<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+
+<span class="n">helmet_file</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">gltf</span><span class="o">.</span><span class="n">download_damaged_helmet</span><span class="p">()</span>
+<span class="n">texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_dikhololo_night</span><span class="p">()</span>
+
+<span class="n">pl</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">import_gltf</span><span class="p">(</span><span class="n">helmet_file</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">set_environment_texture</span><span class="p">(</span><span class="n">texture</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">zoom</span><span class="p">(</span><span class="mf">1.7</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-24" name="sd-tab-set-12" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-24">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-13_00_00.png" src="_images/index-13_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-25" name="sd-tab-set-12" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-25">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-13_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+</section>
+<section id="id19">
+<h2>まとめ<a class="headerlink" href="#id19" title="Link to this heading">#</a></h2>
 <p>今回はPyVistaを使用したCGの作り方を説明してきました．
 PyVistaのAPIはMatplotlibに影響を受けているため，
 PythonやMatplotlibを使用している人には扱いやすいと思います．
@@ -701,10 +782,12 @@ PyVistaを使用することでそれが容易になりました．</p>
 <li><a class="reference internal" href="#id9">日食のような影を作ってみる</a></li>
 <li><a class="reference internal" href="#id11">太陽の光を表現してみる</a></li>
 <li><a class="reference internal" href="#id12">照明をカスタムしてみる</a></li>
-<li><a class="reference internal" href="#id13">物理ベースレンダリングをしてみる</a></li>
+<li><a class="reference internal" href="#id13">月を地球の周りに回転させてみる</a></li>
+<li><a class="reference internal" href="#id14">物理ベースレンダリングをしてみる</a></li>
 <li><a class="reference internal" href="#minecraft">Minecraftのような洞窟を作成してみる</a></li>
-<li><a class="reference internal" href="#id15">インタラクティブにパラメータを修正しよう</a></li>
-<li><a class="reference internal" href="#id17">まとめ</a></li>
+<li><a class="reference internal" href="#id16">インタラクティブにパラメータを修正してみる</a></li>
+<li><a class="reference internal" href="#id18">外部のファイルからデータを読み込んでみる</a></li>
+<li><a class="reference internal" href="#id19">まとめ</a></li>
 </ul>
 </li>
 </ul>

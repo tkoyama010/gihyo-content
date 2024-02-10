@@ -204,6 +204,14 @@ pyvista.Light インスタンスには，ヘッドライト，カメラライト
 照明をカスタムしてみる
 ----------------------
 
+pyvista.Plotter クラスには，既定の照明システム用に次の3つのオプションがあります．
+
+* ヘッドライトと4つのカメラライトで構成されたライトキット
+* カメラの周囲に配置された3つのライトを含む照明システム，
+* 照明なし．
+
+メッシュのカラーにエンコードされた深度情報がない場合，正確に表示するには適切なライティング設定が最も重要になります．
+
 ルーシーエンジェルデータセットをカスタム照明でプロットします．
 "flame" で光をつくります
 シーンライトを作成します．
@@ -229,6 +237,28 @@ pyvista.Light インスタンスには，ヘッドライト，カメラライト
     pl.add_light(scene_light)
     pl.background_color = 'k'
     pl.show()
+
+月を地球の周りに回転させてみる
+------------------------------
+
+シーンを周回します．
+軌道を描くには，まずシーンを表示し，プロッターを .show(auto_close=False) で開いたままにしておく必要があります．
+また， pv.Plotter(off_screen=True) を設定する必要があるかもしれません．
+
+.. pyvista-plot::
+
+    import pyvista as pv
+    from pyvista import examples
+
+    mesh = examples.download_st_helens().warp_by_scalar()
+    p = pv.Plotter()
+    p.add_mesh(mesh, lighting=False)
+    p.camera.zoom(1.5)
+    p.show(auto_close=False)
+    path = p.generate_orbital_path(n_points=36, shift=mesh.length)
+    p.open_gif("orbit.gif")
+    p.orbit_on_path(path, write_frames=True)
+    p.close()
 
 物理ベースレンダリングをしてみる
 --------------------------------
@@ -294,8 +324,8 @@ Minecraftなどのビデオゲームでは，Perlinノイズを使用して地�
         show_edges=False,
     )
 
-インタラクティブにパラメータを修正しよう
-----------------------------------------
+インタラクティブにパラメータを修正してみる
+------------------------------------------
 
 .. todo::
     毎回パラメータを修正してPythonを実行すのは面倒であることを伝える．
@@ -319,6 +349,30 @@ pyvista.Plotter.add_slider_widget() メソッドおよび pyvista.Plotter.clear_
 
     p.add_slider_widget(create_mesh, [5, 100], title='Resolution')
     p.show()
+
+外部のファイルからデータを読み込んでみる
+----------------------------------------
+
+glTFファイルをPyVistaのプロッティングシーンに直接インポートできます．
+glTFフォーマットの詳細については， https://www.khronos.org/gltf/ を参照してください．
+まず，サンプルをダウンロードします．
+なお，ここではハイダイナミックレンジのテクスチャを使用していますが，
+これはglTFファイルが一般的に物理ベースのレンダリングを含んでおり，VTK v9がハイダイナミックレンジのテクスチャをサポートしているためです．
+プロッタを設定し，環境テクスチャを有効にします． これは，ダメージを受けたヘルメットの例のように，物理ベースのレンダリングが可能なメッシュに有効です．
+
+.. pyvista-plot::
+
+    import pyvista
+    from pyvista import examples
+
+    helmet_file = examples.gltf.download_damaged_helmet()
+    texture = examples.download_dikhololo_night()
+
+    pl = pyvista.Plotter()
+    pl.import_gltf(helmet_file)
+    pl.set_environment_texture(texture)
+    pl.camera.zoom(1.7)
+    pl.show()
 
 まとめ
 ------
