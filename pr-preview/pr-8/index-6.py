@@ -1,16 +1,19 @@
-import pyvista
-from pyvista import examples
+import pyvista as pv
 
-light = pyvista.Light()
-light.set_direction_angle(30, -20)
+plotter = pv.Plotter(lighting=None, window_size=(800, 800))
 
-pl = pyvista.Plotter(lighting="none")
-cubemap = examples.download_cubemap_space_16k()
-_ = pl.add_actor(cubemap.to_skybox())
-pl.set_environment_texture(cubemap, True)
-pl.add_light(light)
-mesh = examples.planets.load_earth()
-texture = examples.load_globe_texture()
-pl.add_mesh(mesh, texture=texture, smooth_shading=True)
-# mercury.translate((0.0, 0.0, 0.0), inplace=True)
-pl.show()
+light = pv.Light(position=(0, 0, 3), show_actor=True, positional=True,
+                 cone_angle=30, exponent=20, intensity=1.5)
+plotter.add_light(light)
+
+sphere = pv.Sphere(radius=0.3, center=(0, 0, 1))
+plotter.add_mesh(sphere, ambient=0.2, diffuse=0.5, specular=0.8,
+                 specular_power=30, smooth_shading=True,
+                 color='dodgerblue')
+
+grid = pv.Plane(i_size=4, j_size=4)
+plotter.add_mesh(grid, ambient=0, diffuse=0.5, specular=0.8, color='white')
+
+plotter.enable_shadows()
+plotter.set_background('darkgrey')
+plotter.show()
