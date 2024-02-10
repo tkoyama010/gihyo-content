@@ -172,8 +172,24 @@ PyVistaのLightオブジェクトを使用してレンダリング用のバー�
     pl.add_mesh(pluto, texture=pluto_texture, smooth_shading=True)
     pl.show()
 
-.. ファイルからモデルを読み込む
-.. ----------------------------
+月を追加しよう
+--------------
+
+宇宙空間に浮かぶ地球を表現することができました・
+
+.. pyvista-plot::
+
+    import pyvista as pv
+    from pyvista import examples
+    mesh = examples.planets.load_moon()
+    texture = examples.planets.download_moon_surface(texture=True)
+    pl = pv.Plotter()
+    image_path = examples.planets.download_stars_sky_background(
+        load=False
+    )
+    pl.add_background_image(image_path)
+    _ = pl.add_mesh(mesh, texture=texture)
+    pl.show()
 
 
 まとめ
@@ -182,6 +198,7 @@ PyVistaのLightオブジェクトを使用してレンダリング用のバー�
 以上がPyVistaを使用したCGの作り方になります。
 PyVistaのAPIはMatplotlibに影響を受けているため、
 PythonやMatplotlibを使用している人には扱いやすいと思います。
+Matplotlibでは3Dの描画に難がありましたが、PyVistaを使用することでそれが容易になりました。
 
 .. レンダリング
 .. ------------
