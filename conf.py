@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'PyVista Report'
+project = '原稿'
 copyright = '2023, Tetsuo Koyama'
 author = 'Tetsuo Koyama'
 
