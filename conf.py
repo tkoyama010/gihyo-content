@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = '原稿'
+project = 'DRAFT'
 copyright = '2023, Tetsuo Koyama'
 author = 'Tetsuo Koyama'
 
