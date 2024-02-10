@@ -89,13 +89,16 @@ PyVistaでは入門用のデータがパッケージに同封されており，�
 次に地球の隣に月を追加してみましょう．
 PyVistaでは複数オブジェクトを描画することも可能です．
 PyVistaには月のデータセットが準備されているので，地球と並べて表示してみましょう．
+月のデータセットは `pyvista.examples.planets.load_moon` 関数で取得することができます．
 複数のオブジェクトを配置する際には `Plotter` オブジェクトを使用します．
+これは， `Matplotlib` の `Figure` オブジェクトのようなものです．
 
 .. pyvista-plot::
 
     import pyvista as pv
     from pyvista import examples
     mesh = examples.planets.load_moon()
+
     texture = examples.planets.download_moon_surface(texture=True)
     pl = pv.Plotter()
     image_path = examples.planets.download_stars_sky_background(
