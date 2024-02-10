@@ -1,5 +1,8 @@
 PythonでCGを作りたい人のためのPyVista入門
 =========================================
+.. todo::
+
+   日食で光の表現をする。
 
 小山哲央(`@tkoyama010 <https://twitter.com/tkoyama010>`_)です。
 今回は私が開発に参加している3次元可視化ツール `PyVista <https://pyvista.github.io/pyvista-docs-dev-ja/>`_ について紹介します。
@@ -79,6 +82,23 @@ PyVistaでは入門用のデータがパッケージに同封されており、�
     sphere.plot(texture=texture)
 
 ご覧の通り、地球儀が作成できていることがわかります。
+
+地球に月を追加しよう
+--------------------
+
+.. pyvista-plot::
+
+    import pyvista as pv
+    from pyvista import examples
+    mesh = examples.planets.load_moon()
+    texture = examples.planets.download_moon_surface(texture=True)
+    pl = pv.Plotter()
+    image_path = examples.planets.download_stars_sky_background(
+        load=False
+    )
+    pl.add_background_image(image_path)
+    _ = pl.add_mesh(mesh, texture=texture)
+    pl.show()
 
 太陽の光を表現しよう
 --------------------
