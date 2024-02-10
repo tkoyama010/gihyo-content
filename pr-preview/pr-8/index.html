@@ -307,8 +307,10 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </section>
 <section id="id5">
 <h2>地球に月を追加しよう<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-<p>PyVistaでは複数オブジェクトを描画することも可能です．
-次に，月を追加しましょう．</p>
+<p>次に地球の隣に月を追加してみましょう．
+PyVistaでは複数オブジェクトを描画することも可能です．
+PyVistaには月のデータセットが準備されているので，地球と並べて表示してみましょう．
+複数のオブジェクトを配置する際には <cite>Plotter</cite> オブジェクトを使用します．</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
 <span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
 <span class="n">mesh</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_moon</span><span class="p">()</span>
