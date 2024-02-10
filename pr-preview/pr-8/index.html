@@ -6,7 +6,7 @@
 <link rel="index" title="索引" href="genindex.html" /><link rel="search" title="検索" href="search.html" />
 
     <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
-        <title>$B869F(B ドキュメント</title>
+        <title>DRAFT ドキュメント</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
@@ -124,7 +124,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="#"><div class="brand">$B869F(B  ドキュメント</div></a>
+      <a href="#"><div class="brand">DRAFT  ドキュメント</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -147,7 +147,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
   
   
-  <span class="sidebar-brand-text">$B869F(B  ドキュメント</span>
+  <span class="sidebar-brand-text">DRAFT  ドキュメント</span>
   
 </a><form class="sidebar-search-container" method="get" action="search.html" role="search">
   <input class="sidebar-search" placeholder="検索" name="q" aria-label="検索">
@@ -236,7 +236,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 球が表示されたらインストール成功です．</p>
 </section>
 <section id="id3">
-<h2>地球儀を作ろう<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<h2>地球儀を作ってみる<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <p>3次元コンピュータグラフィックスでは3Dモデル表面に質感を与えるためにテクスチャマッピングという手法が使用されます．
 そこで，先程の3Dモデルにテクスチャを追加してみましょう．
 テクスチャは自分自身で準備した画像を指定することもできますが，今回はPyVistaで提供されているテクスチャの素材を使用することにしましょう．
@@ -269,6 +269,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <p class="admonition-title">課題</p>
 <p>説明をもう少し詳しく</p>
 </div>
+<p>以下のコードを実行して地球が表示されたら実行成功です．</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
@@ -303,24 +304,19 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-3_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p>ご覧の通り，地球儀が作成できていることがわかります．</p>
 </section>
 <section id="id5">
-<h2>地球の横に月を追加しよう<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<h2>地球の横に月を追加してみる<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <p>次に地球の隣に月を追加してみましょう．
-PyVistaでは複数オブジェクトを描画することも可能です．
 PyVistaには月のデータセットが準備されているので，地球と並べて表示してみましょう．
 月のデータセットは <cite>pyvista.examples.planets.load_moon</cite> 関数で取得することができます．
+PyVistaでは複数オブジェクトを描画することも可能です．
 複数のオブジェクトを配置する際には <cite>Plotter</cite> オブジェクトを使用します．
 これは， <cite>Matplotlib</cite> の <cite>Figure</cite> オブジェクトのようなものです．</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
 <span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
 
 <span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
-<span class="n">image_path</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_stars_sky_background</span><span class="p">(</span>
-    <span class="n">load</span><span class="o">=</span><span class="kc">False</span>
-<span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">add_background_image</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
 <span class="n">mesh</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_moon</span><span class="p">()</span>
 <span class="n">texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_moon_surface</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="n">texture</span><span class="p">)</span>
@@ -342,7 +338,13 @@ Interactive Scene</label><div class="sd-tab-content docutils">
     <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-4_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
 </div>
 </div>
-<p>宇宙空間に浮かぶ地球を表現することができました．</p>
+</section>
+<section id="id6">
+<h2>背景に夜空の星を追加してみる<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<p>次に背景を星空にしてみましょう．
+次に背景に夜空の星を追加してみましょう．
+宇宙空間に浮かぶ地球を表現することができました．
+以下のコードを実行して宇宙空間に浮かぶ地球と月が表示されたら実行成功です．</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
 <span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
 <span class="n">mesh</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_moon</span><span class="p">()</span>
@@ -372,12 +374,8 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </section>
-<section id="id6">
-<h2>背景を星空にしてみよう<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<p>次に背景を星空にしてみましょう．</p>
-</section>
 <section id="id7">
-<h2>太陽の光を表現しよう<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<h2>太陽の光を表現してみる<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <p>前節ではテクスチャマッピングをすることで地球儀を作成しました．
 しかし，もう少しリアリティを演出したいですね．
 そこでこの節では地球儀に背景を設定しライトニングを行うことで太陽の光を表現します．
@@ -417,7 +415,10 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="id8">
-<h2>まとめ<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<h2>カメラを操作してみる<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+</section>
+<section id="id9">
+<h2>まとめ<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
 <p>今回はPyVistaを使用したCGの作り方を説明してきました．
 PyVistaのAPIはMatplotlibに影響を受けているため，
 PythonやMatplotlibを使用している人には扱いやすいと思います．
@@ -466,11 +467,12 @@ PyVistaを使用することでそれが容易になりました．</p>
             <ul>
 <li><a class="reference internal" href="#">PythonでCGを作りたい人のためのPyVista入門</a><ul>
 <li><a class="reference internal" href="#id2">インストール</a></li>
-<li><a class="reference internal" href="#id3">地球儀を作ろう</a></li>
-<li><a class="reference internal" href="#id5">地球の横に月を追加しよう</a></li>
-<li><a class="reference internal" href="#id6">背景を星空にしてみよう</a></li>
-<li><a class="reference internal" href="#id7">太陽の光を表現しよう</a></li>
-<li><a class="reference internal" href="#id8">まとめ</a></li>
+<li><a class="reference internal" href="#id3">地球儀を作ってみる</a></li>
+<li><a class="reference internal" href="#id5">地球の横に月を追加してみる</a></li>
+<li><a class="reference internal" href="#id6">背景に夜空の星を追加してみる</a></li>
+<li><a class="reference internal" href="#id7">太陽の光を表現してみる</a></li>
+<li><a class="reference internal" href="#id8">カメラを操作してみる</a></li>
+<li><a class="reference internal" href="#id9">まとめ</a></li>
 </ul>
 </li>
 </ul>
