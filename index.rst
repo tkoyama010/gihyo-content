@@ -1,13 +1,17 @@
 PythonでCGを作りたい人のためのPyVista入門
 =========================================
-.. todo::
-
-   日食で光の表現をする．
 
 小山哲央(`@tkoyama010 <https://twitter.com/tkoyama010>`_)です．
 今回は私が開発に参加している3次元可視化ツール `PyVista <https://pyvista.github.io/pyvista-docs-dev-ja/>`_ について紹介します．
 PyVistaは科学技術計算の3次元可視化のために開発されたツールですが，CGを作成する機能があります．
 そこで今回はPythonが好きでCGを作ってみたい人に向けてPyVistaでCGを作成する方法を本記事で紹介します．
+
+PyVistaとは
+-----------
+
+.. todo::
+
+   論文 Sullivan, B., & Kaszynski, A. (2019). PyVista: 3D plotting and mesh analysis through a streamlined interface for the Visualization Toolkit (VTK). Journal of Open Source Software, 4(37), 1450. https://doi.org/10.21105/joss.01450 を発表しました．
 
 インストール
 ------------
@@ -30,9 +34,9 @@ PyVistaは `pip` コマンドでインストールすることができます．
     :include-source: True
     :context:
 
-    >>> import pyvista as pv
-    >>> mesh = pv.Sphere()
-    >>> mesh.plot()
+    import pyvista as pv
+    mesh = pv.Sphere()
+    mesh.plot()
 
 これがPyVistaのHello Worldです．
 ウィンドウの表示は環境により多少異なる場合があります．
@@ -104,6 +108,7 @@ PyVistaでは複数オブジェクトを描画することも可能です．
     _ = pl.add_mesh(mesh, texture=texture)
     pl.show()
 
+
 背景に夜空の星を追加してみる
 ----------------------------
 
@@ -125,6 +130,46 @@ PyVistaでは複数オブジェクトを描画することも可能です．
     pl.add_background_image(image_path)
     _ = pl.add_mesh(mesh, texture=texture)
     pl.show()
+
+カメラを操作してみる
+--------------------
+
+pyvista.Camera クラスは， vtk.vtkCamera クラスに追加機能とPython APIを追加します．
+pyvista.vtkCamera オブジェクトには，ほとんどの場合に適切に機能するデフォルトのライトセットが付属していますが，多くの場合，より実践的なカメラへのアプローチが必要です．
+pyvista.Camera クラスは， vtk.vtkCamera クラスに追加機能とPython APIを追加します． pyvista.vtkCamera オブジェクトには，ほとんどの場合に適切に機能するデフォルトのライトセットが付属していますが，多くの場合，より実践的なカメラへのアプローチが必要です．
+
+日食のような影を作ってみる
+--------------------------
+.. todo::
+
+   日食で光の表現をする．
+
+指向性ライトを使用すると，複雑なライティングシナリオを作成できます．
+たとえば，ライトをアクター(この場合は球体)の真上に配置して，その真下にシャドウを作成できます．
+次の例では，位置ライトを使用して，ライトの円錐角度と指数値を制御し，球体の下に日食のようなシャドウを作成します．
+
+.. pyvista-plot::
+
+    import pyvista as pv
+
+    plotter = pv.Plotter(lighting=None, window_size=(800, 800))
+
+    light = pv.Light(position=(0, 0, 3), show_actor=True, positional=True,
+                     cone_angle=30, exponent=20, intensity=1.5)
+    plotter.add_light(light)
+
+    sphere = pv.Sphere(radius=0.3, center=(0, 0, 1))
+    plotter.add_mesh(sphere, ambient=0.2, diffuse=0.5, specular=0.8,
+                     specular_power=30, smooth_shading=True,
+                     color='dodgerblue')
+
+    grid = pv.Plane(i_size=4, j_size=4)
+    plotter.add_mesh(grid, ambient=0, diffuse=0.5, specular=0.8, color='white')
+
+    plotter.enable_shadows()
+    plotter.set_background('darkgrey')
+    plotter.show()
+
 
 太陽の光を表現してみる
 ----------------------
@@ -153,8 +198,127 @@ PyVistaのLightオブジェクトを使用してレンダリング用のバー�
     # mercury.translate((0.0, 0.0, 0.0), inplace=True)
     pl.show()
 
-カメラを操作してみる
---------------------
+pyvista.Light インスタンスには，ヘッドライト，カメラライト，シーンライトの3つのタイプがあります．
+ヘッドライトは常にカメラの軸に沿って輝き，カメラライトはカメラに対して固定位置を持ち，シーンライトはシーンに対して配置されるため，カメラの周りを移動してもシーンのライティングには影響しません．
+
+照明をカスタムしてみる
+----------------------
+
+ルーシーエンジェルデータセットをカスタム照明でプロットします．
+"flame" で光をつくります
+シーンライトを作成します．
+
+.. pyvista-plot::
+
+    from pyvista import examples
+    import pyvista as pv
+    dataset = examples.download_lucy()
+    flame_light = pv.Light(
+        color=[0.886, 0.345, 0.133],
+        position=[550, 140, 950],
+        intensity=1.5,
+        positional=True,
+        cone_angle=90,
+        attenuation_values=(0.001, 0.005, 0),
+    )
+    scene_light = pv.Light(intensity=0.2)
+
+    pl = pv.Plotter(lighting=None)
+    _ = pl.add_mesh(dataset, smooth_shading=True)
+    pl.add_light(flame_light)
+    pl.add_light(scene_light)
+    pl.background_color = 'k'
+    pl.show()
+
+物理ベースレンダリングをしてみる
+--------------------------------
+
+VTK9は物理ベースレンダリング(PBR)を導入しており，その機能をPyVistaで公開しています．詳細については blog about PBR をお読みください．
+PBRは pyvista.PolyData に対してのみサポートされており， add_mesh の pbr キーワード引数を介して起動できます．また， metallic および roughness 引数を使用してさらに制御できます．
+この機能を，彫像の高品質メッシュを金属のようにレンダリングすることで示しましょう．
+
+.. pyvista-plot::
+
+    from itertools import product
+
+    import pyvista as pv
+    from pyvista import examples
+
+    # Load the statue mesh
+    mesh = examples.download_nefertiti()
+    mesh.rotate_x(-90.0, inplace=True)  # rotate to orient with the skybox
+
+    # Download skybox
+    cubemap = examples.download_sky_box_cube_map()
+
+    p = pv.Plotter()
+    p.add_actor(cubemap.to_skybox())
+    p.set_environment_texture(cubemap)  # For reflecting the environment off the mesh
+    p.add_mesh(mesh, color='linen', pbr=True, metallic=0.8, roughness=0.1, diffuse=1)
+
+    # Define a nice camera perspective
+    cpos = [(-313.40, 66.09, 1000.61), (0.0, 0.0, 0.0), (0.018, 0.99, -0.06)]
+
+    p.show(cpos=cpos)
+
+Minecraftのような洞窟を作成してみる
+-----------------------------------
+
+.. todo::
+    フィルタの説明をする．
+
+ここでは， pyvista.core.utilities.features.sample_function() を使用して領域上のPerlinノイズをサンプリングし，ランダムな地表を生成します．
+Minecraftなどのビデオゲームでは，Perlinノイズを使用して地表を作成します．ここでは，Minecraftの "洞窟" に似たボクセル化メッシュを作成します．
+"freq" の値を自由に変更して， "洞窟" の形を変えることができます．
+たとえば，周波数を低くすると，洞穴が大きく拡張します．
+一方，任意の方向の周波数を高くすると，洞穴はより "静脈のように" 見え，開きにくくなります．
+
+しきい値を変更して，開いている地形または閉じている地形の割合を増減します
+
+.. pyvista-plot::
+
+    import pyvista as pv
+    freq = (1, 1, 1)
+    noise = pv.perlin_noise(1, freq, (0, 0, 0))
+    grid = pv.sample_function(noise, [0, 3.0, -0, 1.0, 0, 1.0], dim=(120, 40, 40))
+    out = grid.threshold(0.02)
+    mn, mx = [out['scalars'].min(), out['scalars'].max()]
+    clim = (mn, mx * 1.8)
+
+    out.plot(
+        cmap='gist_earth_r',
+        background='white',
+        show_scalar_bar=False,
+        lighting=True,
+        clim=clim,
+        show_edges=False,
+    )
+
+インタラクティブにパラメータを修正しよう
+----------------------------------------
+
+.. todo::
+    毎回パラメータを修正してPythonを実行すのは面倒であることを伝える．
+
+スライダウィジェットは，
+pyvista.Plotter.add_slider_widget() メソッドおよび pyvista.Plotter.clear_slider_widgets() メソッドによって，
+それぞれ有効および無効にすることができます．
+これは，ほぼすべてのものに使用できる値を制御できるため，最も用途の広いウィジェットの1つです．
+
+.. pyvista-plot::
+
+    import pyvista as pv
+    p = pv.Plotter()
+
+    def create_mesh(value):
+        res = int(value)
+        sphere = pv.Sphere(phi_resolution=res, theta_resolution=res)
+        p.add_mesh(sphere, name='sphere', show_edges=True)
+        return
+
+
+    p.add_slider_widget(create_mesh, [5, 100], title='Resolution')
+    p.show()
 
 まとめ
 ------
