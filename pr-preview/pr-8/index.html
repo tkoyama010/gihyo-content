@@ -343,8 +343,8 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="id7">
-<h2>背景に夜空の星を追加してみる<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
-<p>次に背景を星空にしてみましょう．
+<h2>背景を黒にしてみる<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<p>次に背景を夜空にしてみましょう．
 次に背景に夜空の星を追加してみましょう．
 宇宙空間に浮かぶ地球を表現することができました．
 以下のコードを実行して宇宙空間に浮かぶ地球と月が表示されたら実行成功です．</p>
@@ -353,10 +353,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <span class="n">mesh</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_moon</span><span class="p">()</span>
 <span class="n">texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_moon_surface</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
-<span class="n">image_path</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_stars_sky_background</span><span class="p">(</span>
-    <span class="n">load</span><span class="o">=</span><span class="kc">False</span>
-<span class="p">)</span>
-<span class="n">pl</span><span class="o">.</span><span class="n">add_background_image</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">background_color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="n">texture</span><span class="p">)</span>
 <span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -724,6 +721,92 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </section>
+<section id="alien-monsters">
+<h2>ALIEN MONSTERSのピクセルアート<a class="headerlink" href="#alien-monsters" title="Link to this heading">#</a></h2>
+<p>ここでは， pyvista.Box() を使って， ピクセルアート を作ります．
+ピクセル文字列 ソース と ライセンス ．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="kn">from</span> <span class="nn">pyvista.demos</span> <span class="kn">import</span> <span class="n">logo</span>
+<span class="n">alien_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    </span><span class="si">%         %</span>
+<span class="s2">      </span><span class="si">%     %</span>
+<span class="s2">    </span><span class="si">% %</span><span class="s2"> </span><span class="si">% %</span><span class="s2"> </span><span class="si">% %</span>
+<span class="s2">  </span><span class="si">% %</span><span class="s2">   </span><span class="si">% %</span><span class="s2">   </span><span class="si">% %</span>
+<span class="si">% %</span><span class="s2"> </span><span class="si">% %</span><span class="s2"> </span><span class="si">% %</span><span class="s2"> </span><span class="si">% %</span><span class="s2"> </span><span class="si">% %</span>
+<span class="si">%   %</span><span class="s2"> </span><span class="si">% %</span><span class="s2"> </span><span class="si">% %</span><span class="s2"> </span><span class="si">%   %</span>
+<span class="si">%   %</span><span class="s2">         </span><span class="si">%   %</span>
+<span class="si">%   %</span><span class="s2"> </span><span class="si">%     %</span><span class="s2"> </span><span class="si">%   %</span>
+<span class="s2">      </span><span class="si">%     %</span>
+<span class="s2">    </span><span class="si">%         %</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+<span class="n">alien</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">alien_str</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="mi">1</span><span class="p">:]:</span>  <span class="c1"># skip first linebreak</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">20</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">))</span> <span class="o">*</span> <span class="s1">&#39; &#39;</span>
+    <span class="n">alien</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">line</span><span class="p">[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;% &#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">),</span> <span class="mi">2</span><span class="p">)])</span>
+
+<span class="k">def</span> <span class="nf">draw_pixels</span><span class="p">(</span><span class="n">plotter</span><span class="p">,</span> <span class="n">pixels</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">10.0</span><span class="p">,</span>
+        <span class="o">+</span><span class="mf">10.0</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">pixels</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">pixel</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">pixel</span><span class="p">:</span>
+                <span class="n">box</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">)</span>
+                <span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+            <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">2.0</span>
+            <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">2.0</span>
+        <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.0</span>
+        <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.0</span>
+        <span class="n">bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+=</span> <span class="o">-</span><span class="mf">2.0</span>
+        <span class="n">bounds</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+=</span> <span class="o">-</span><span class="mf">2.0</span>
+    <span class="k">return</span> <span class="n">plotter</span>
+
+<span class="c1"># Display MONSTERS</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">draw_pixels</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">alien</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">22.0</span><span class="p">,</span> <span class="mf">22.0</span><span class="p">],</span> <span class="s2">&quot;green&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">draw_pixels</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">alien</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">22.0</span><span class="p">],</span> <span class="s2">&quot;green&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">draw_pixels</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">alien</span><span class="p">,</span> <span class="p">[</span><span class="mf">22.0</span><span class="p">,</span> <span class="mf">22.0</span><span class="p">],</span> <span class="s2">&quot;green&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">draw_pixels</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">alien</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">22.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">draw_pixels</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">alien</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">draw_pixels</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">alien</span><span class="p">,</span> <span class="p">[</span><span class="mf">22.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">draw_pixels</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">alien</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">22.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">22.0</span><span class="p">],</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">draw_pixels</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">alien</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">22.0</span><span class="p">],</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">draw_pixels</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">alien</span><span class="p">,</span> <span class="p">[</span><span class="mf">22.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">22.0</span><span class="p">],</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="n">logo</span><span class="o">.</span><span class="n">text_3d</span><span class="p">(</span><span class="s2">&quot;ALIEN MONSTERS&quot;</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
+<span class="n">text</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">points</span> <span class="o">*</span> <span class="mf">4.0</span>
+<span class="n">text</span><span class="o">.</span><span class="n">translate</span><span class="p">([</span><span class="o">-</span><span class="mf">20.0</span><span class="p">,</span> <span class="mf">24.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-26" name="sd-tab-set-13" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-26">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-14_00_00.png" src="_images/index-14_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-27" name="sd-tab-set-13" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-27">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-14_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+</section>
 <section id="id19">
 <h2>まとめ<a class="headerlink" href="#id19" title="Link to this heading">#</a></h2>
 <p>今回はPyVistaを使用したCGの作り方を説明してきました．
@@ -777,7 +860,7 @@ PyVistaを使用することでそれが容易になりました．</p>
 <li><a class="reference internal" href="#id3">インストール</a></li>
 <li><a class="reference internal" href="#id4">地球を作ってみる</a></li>
 <li><a class="reference internal" href="#id6">地球の横に月を追加してみる</a></li>
-<li><a class="reference internal" href="#id7">背景に夜空の星を追加してみる</a></li>
+<li><a class="reference internal" href="#id7">背景を黒にしてみる</a></li>
 <li><a class="reference internal" href="#id8">カメラを操作してみる</a></li>
 <li><a class="reference internal" href="#id9">日食のような影を作ってみる</a></li>
 <li><a class="reference internal" href="#id11">太陽の光を表現してみる</a></li>
@@ -787,6 +870,7 @@ PyVistaを使用することでそれが容易になりました．</p>
 <li><a class="reference internal" href="#minecraft">Minecraftのような洞窟を作成してみる</a></li>
 <li><a class="reference internal" href="#id16">インタラクティブにパラメータを修正してみる</a></li>
 <li><a class="reference internal" href="#id18">外部のファイルからデータを読み込んでみる</a></li>
+<li><a class="reference internal" href="#alien-monsters">ALIEN MONSTERSのピクセルアート</a></li>
 <li><a class="reference internal" href="#id19">まとめ</a></li>
 </ul>
 </li>
