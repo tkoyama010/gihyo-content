@@ -17,10 +17,9 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'PyVista Report'
+project = 'DRAFT'
 copyright = '2023, Tetsuo Koyama'
 author = 'Tetsuo Koyama'
-
 
 # -- General configuration ---------------------------------------------------
 
@@ -28,7 +27,13 @@ author = 'Tetsuo Koyama'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    "pyvista.ext.plot_directive",
+    "pyvista.ext.viewer_directive",
+    "sphinx_design",
+    "sphinx.ext.todo",
 ]
+
+todo_include_todos=True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
