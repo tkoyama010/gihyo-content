@@ -9,6 +9,7 @@ PyVistaは科学技術計算の3次元可視化のために開発されたツー
 PyVistaとは
 -----------
 
+
 .. todo::
 
    論文 Sullivan, B., & Kaszynski, A. (2019). PyVista: 3D plotting and mesh analysis through a streamlined interface for the Visualization Toolkit (VTK). Journal of Open Source Software, 4(37), 1450. https://doi.org/10.21105/joss.01450 を発表しました．
