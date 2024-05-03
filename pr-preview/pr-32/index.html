@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="索引" href="genindex.html" /><link rel="search" title="検索" href="search.html" />
 
-    <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
+    <!-- Generated with Sphinx 7.3.6 and Furo 2024.01.29 -->
         <title>DRAFT ドキュメント</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
@@ -189,20 +189,20 @@
         </div>
         <article role="main">
           <section id="pythoncgpyvista">
-<h1>PythonでCGを作りたい人のためのPyVista入門<a class="headerlink" href="#pythoncgpyvista" title="Link to this heading">#</a></h1>
+<h1>PythonでCGを作りたい人のためのPyVista入門<a class="headerlink" href="#pythoncgpyvista" title="Link to this heading">¶</a></h1>
 <p>小山哲央(<a class="reference external" href="https://twitter.com/tkoyama010">&#64;tkoyama010</a>)です．
 今回は私が開発に参加している3次元可視化ツール <a class="reference external" href="https://pyvista.github.io/pyvista-docs-dev-ja/">PyVista</a> について紹介します．
 PyVistaは科学技術計算の3次元可視化のために開発されたツールですが，CGを作成する機能があります．
 そこで今回はPythonが好きでCGを作ってみたい人に向けてPyVistaでCGを作成する方法を本記事で紹介します．</p>
 <section id="id1">
-<h2>PyVistaとは<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<h2>PyVistaとは<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
 <div class="admonition-todo admonition" id="id2">
 <p class="admonition-title">課題</p>
 <p>論文 Sullivan, B., &amp; Kaszynski, A. (2019). PyVista: 3D plotting and mesh analysis through a streamlined interface for the Visualization Toolkit (VTK). Journal of Open Source Software, 4(37), 1450. <a class="reference external" href="https://doi.org/10.21105/joss.01450">https://doi.org/10.21105/joss.01450</a> を発表しました．</p>
 </div>
 </section>
 <section id="id3">
-<h2>インストール<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<h2>インストール<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
 <p>本記事の動作確認に使用したPython，PyVistaのバージョンは以下のとおりです．
 PyVistaは2024年2月現在，Python3.8以上をサポートしています．</p>
 <ul class="simple">
@@ -239,7 +239,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 球が表示されたらインストール成功です．</p>
 </section>
 <section id="id4">
-<h2>地球を作ってみる<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<h2>地球を作ってみる<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
 <p>3次元コンピュータグラフィックスでは3Dモデル表面に質感を与えるためにテクスチャマッピングという手法が使用されます．
 そこで，先程の3Dモデルにテクスチャを追加してみましょう．
 テクスチャは自分自身で準備した画像を指定することもできますが，今回はPyVistaで提供されているテクスチャの素材を使用することにしましょう．
@@ -309,7 +309,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="id6">
-<h2>地球の横に月を追加してみる<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<h2>地球の横に月を追加してみる<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
 <p>次に地球の隣に月を追加してみましょう．
 PyVistaには月のデータセットが準備されているので，地球と並べて表示してみましょう．
 月のデータセットは <cite>pyvista.examples.planets.load_moon</cite> 関数で取得することができます．
@@ -343,7 +343,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="id7">
-<h2>背景を黒にしてみる<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<h2>背景を黒にしてみる<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
 <p>次に背景を夜空にしてみましょう．
 次に背景に夜空の星を追加してみましょう．
 宇宙空間に浮かぶ地球を表現することができました．
@@ -375,13 +375,13 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="id8">
-<h2>カメラを操作してみる<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<h2>カメラを操作してみる<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h2>
 <p>pyvista.Camera クラスは， vtk.vtkCamera クラスに追加機能とPython APIを追加します．
 pyvista.vtkCamera オブジェクトには，ほとんどの場合に適切に機能するデフォルトのライトセットが付属していますが，多くの場合，より実践的なカメラへのアプローチが必要です．
 pyvista.Camera クラスは， vtk.vtkCamera クラスに追加機能とPython APIを追加します． pyvista.vtkCamera オブジェクトには，ほとんどの場合に適切に機能するデフォルトのライトセットが付属していますが，多くの場合，より実践的なカメラへのアプローチが必要です．</p>
 </section>
 <section id="id9">
-<h2>日食のような影を作ってみる<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<h2>日食のような影を作ってみる<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h2>
 <div class="admonition-todo admonition" id="id10">
 <p class="admonition-title">課題</p>
 <p>日食で光の表現をする．</p>
@@ -427,7 +427,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="id11">
-<h2>太陽の光を表現してみる<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<h2>太陽の光を表現してみる<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h2>
 <p>前節ではテクスチャマッピングをすることで地球儀を作成しました．
 しかし，もう少しリアリティを演出したいですね．
 そこでこの節では地球儀に背景を設定しライトニングを行うことで太陽の光を表現します．
@@ -469,7 +469,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 ヘッドライトは常にカメラの軸に沿って輝き，カメラライトはカメラに対して固定位置を持ち，シーンライトはシーンに対して配置されるため，カメラの周りを移動してもシーンのライティングには影響しません．</p>
 </section>
 <section id="id12">
-<h2>照明をカスタムしてみる<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<h2>照明をカスタムしてみる<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h2>
 <p>pyvista.Plotter クラスには，既定の照明システム用に次の3つのオプションがあります．</p>
 <ul class="simple">
 <li><p>ヘッドライトと4つのカメラライトで構成されたライトキット</p></li>
@@ -518,7 +518,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="id13">
-<h2>月を地球の周りに回転させてみる<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<h2>月を地球の周りに回転させてみる<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h2>
 <p>シーンを周回します．
 軌道を描くには，まずシーンを表示し，プロッターを .show(auto_close=False) で開いたままにしておく必要があります．
 また， pv.Plotter(off_screen=True) を設定する必要があるかもしれません．</p>
@@ -555,7 +555,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="id14">
-<h2>物理ベースレンダリングをしてみる<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
+<h2>物理ベースレンダリングをしてみる<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h2>
 <p>VTK9は物理ベースレンダリング(PBR)を導入しており，その機能をPyVistaで公開しています．詳細については blog about PBR をお読みください．
 PBRは pyvista.PolyData に対してのみサポートされており， add_mesh の pbr キーワード引数を介して起動できます．また， metallic および roughness 引数を使用してさらに制御できます．
 この機能を，彫像の高品質メッシュを金属のようにレンダリングすることで示しましょう．</p>
@@ -599,7 +599,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="minecraft">
-<h2>Minecraftのような洞窟を作成してみる<a class="headerlink" href="#minecraft" title="Link to this heading">#</a></h2>
+<h2>Minecraftのような洞窟を作成してみる<a class="headerlink" href="#minecraft" title="Link to this heading">¶</a></h2>
 <div class="admonition-todo admonition" id="id15">
 <p class="admonition-title">課題</p>
 <p>フィルタの説明をする．</p>
@@ -645,7 +645,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="id16">
-<h2>インタラクティブにパラメータを修正してみる<a class="headerlink" href="#id16" title="Link to this heading">#</a></h2>
+<h2>インタラクティブにパラメータを修正してみる<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h2>
 <div class="admonition-todo admonition" id="id17">
 <p class="admonition-title">課題</p>
 <p>毎回パラメータを修正してPythonを実行すのは面倒であることを伝える．</p>
@@ -685,7 +685,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="id18">
-<h2>外部のファイルからデータを読み込んでみる<a class="headerlink" href="#id18" title="Link to this heading">#</a></h2>
+<h2>外部のファイルからデータを読み込んでみる<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h2>
 <p>glTFファイルをPyVistaのプロッティングシーンに直接インポートできます．
 glTFフォーマットの詳細については， <a class="reference external" href="https://www.khronos.org/gltf/">https://www.khronos.org/gltf/</a> を参照してください．
 まず，サンプルをダウンロードします．
@@ -722,7 +722,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="alien-monsters">
-<h2>ALIEN MONSTERSのピクセルアート<a class="headerlink" href="#alien-monsters" title="Link to this heading">#</a></h2>
+<h2>ALIEN MONSTERSのピクセルアート<a class="headerlink" href="#alien-monsters" title="Link to this heading">¶</a></h2>
 <p>ここでは， pyvista.Box() を使って， ピクセルアート を作ります．
 ピクセル文字列 ソース と ライセンス ．</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
@@ -808,7 +808,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="id19">
-<h2>まとめ<a class="headerlink" href="#id19" title="Link to this heading">#</a></h2>
+<h2>まとめ<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h2>
 <p>今回はPyVistaを使用したCGの作り方を説明してきました．
 PyVistaのAPIはMatplotlibに影響を受けているため，
 PythonやMatplotlibを使用している人には扱いやすいと思います．
@@ -884,7 +884,7 @@ PyVistaを使用することでそれが容易になりました．</p>
     </aside>
   </div>
 </div><script src="_static/documentation_options.js?v=c033477b"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/scripts/furo.js?v=32e29ea5"></script>
     <script src="_static/translations.js?v=4dbe4bdc"></script>
