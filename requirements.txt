@@ -1,4 +1,4 @@
-furo==2024.1.29
+furo==2024.5.6
 myst-parser==2.0.0
 pyvista[all]>=0.43.1
 sphinx==7.3.6
