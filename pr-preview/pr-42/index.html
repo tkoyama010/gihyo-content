@@ -1,0 +1,895 @@
+<!doctype html>
+<html class="no-js" lang="ja" data-content_root="./">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="索引" href="genindex.html" /><link rel="search" title="検索" href="search.html" />
+
+    <!-- Generated with Sphinx 7.3.6 and Furo 2024.01.29 -->
+        <title>DRAFT ドキュメント</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="#"><div class="brand">DRAFT  ドキュメント</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="#">
+  
+  
+  <span class="sidebar-brand-text">DRAFT  ドキュメント</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="検索" name="q" aria-label="検索">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section id="pythoncgpyvista">
+<h1>PythonでCGを作りたい人のためのPyVista入門<a class="headerlink" href="#pythoncgpyvista" title="Link to this heading">¶</a></h1>
+<p>小山哲央(<a class="reference external" href="https://twitter.com/tkoyama010">&#64;tkoyama010</a>)です．
+今回は私が開発に参加している3次元可視化ツール <a class="reference external" href="https://pyvista.github.io/pyvista-docs-dev-ja/">PyVista</a> について紹介します．</p>
+<section id="id1">
+<h2>PyVistaとは<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<p>PyVistaは，3次元可視化のためのPythonライブラリです．
+このライブラリは，VTK（Visualization Toolkit）をラップしており，VTKの機能をPythonで簡単に利用できるようにしています．
+PyVistaは，VTKの機能を継承しているため，高度な3次元可視化を行うことができます．
+また，PyVistaは，VTKの機能を簡単に利用できるようにしただけでなく，Pythonの特性を活かして，VTKの機能をより使いやすくしています．
+PyVistaは科学技術計算の3次元可視化のために開発されたツールですが，CGを作成する機能があります．
+そこで今回はPythonが好きでCGを作ってみたい人に向けてPyVistaでCGを作成する方法を本記事で紹介します．</p>
+</section>
+<section id="id2">
+<h2>インストール<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<p>本記事の動作確認に使用したPython，PyVistaのバージョンは以下のとおりです．
+PyVistaは2024年5月現在，Python3.8以上をサポートしています．</p>
+<ul class="simple">
+<li><p>Python 3.11.6</p></li>
+<li><p>PyVista 0.43.6</p></li>
+</ul>
+<p>PyVistaは <cite>pip</cite> コマンドでインストールすることができます．</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pyvista
+</pre></div>
+</div>
+<p>インストール後，Pythonで以下のコードを実行して図のようなウィンドウが表示されることを確認してください．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Sphere</span><span class="p">()</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-1_00_00.png" src="_images/index-1_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-1_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+<p>これがPyVistaのHello Worldです．
+ウィンドウの表示は環境により多少異なる場合があります．
+球が表示されたらインストール成功です．</p>
+</section>
+<section id="id3">
+<h2>地球を作ってみる<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<p>3次元コンピュータグラフィックスでは3Dモデル表面に質感を与えるためにテクスチャマッピングという手法が使用されます．
+そこで，先程の3Dモデルにテクスチャを追加してみましょう．
+テクスチャは自分自身で準備した画像を指定することもできますが，今回はPyVistaで提供されているテクスチャの素材を使用することにしましょう．
+PyVistaではデモンストレーション用のデータがパッケージに同封されており，以下のように取得することができます．
+<cite>Texture</cite> オブジェクトの <cite>plot()</cite> メソッドを使用することで地球のテクスチャが表示されます．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+
+<span class="n">texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">load_globe_texture</span><span class="p">()</span>
+<span class="n">texture</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-2" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-2">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-2_00_00.png" src="_images/index-2_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-3">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-2_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+<p>ロードしたテクスチャでテクスチャマッピングを行いましょう．
+テクスチャマッピングの際にはイメージの空間参照を <cite>active_texture_coordinates</cite> に定義する必要があります．
+以下のコードを実行して地球が表示されたら実行成功です．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+
+<span class="n">texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">load_globe_texture</span><span class="p">()</span>
+
+<span class="n">sphere</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Sphere</span><span class="p">(</span>
+    <span class="n">radius</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">theta_resolution</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">phi_resolution</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span> <span class="n">start_theta</span><span class="o">=</span><span class="mf">270.001</span><span class="p">,</span> <span class="n">end_theta</span><span class="o">=</span><span class="mi">270</span>
+<span class="p">)</span>
+
+<span class="n">sphere</span><span class="o">.</span><span class="n">active_texture_coordinates</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">sphere</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="n">sphere</span><span class="o">.</span><span class="n">active_texture_coordinates</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="mf">0.5</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="o">-</span><span class="n">sphere</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">sphere</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">),</span>
+        <span class="mf">0.5</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="n">sphere</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="n">texture</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-4">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-3_00_00.png" src="_images/index-3_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-5">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-3_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+<p>Pythonではテクスチャマッピングに使用する式を比較的簡単に記述することができます．
+自分が考えた式を実装してマッピングしてみるのも面白いかもしれません．
+テクスチャマッピングの式を考えるのが難しい場合は，
+PyVistaの <cite>examples</cite> モジュールにあるテクスチャマッピング済みのデータセットを使用することをおすすめします．
+以下のコードは地球のデータセットをロードして表示するコードです．</p>
+</section>
+<section id="id4">
+<h2>地球の横に月を追加してみる<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
+<p>次に地球の隣に月を追加してみましょう．
+PyVistaには月のデータセットが準備されているので，地球と並べて表示してみましょう．
+月のデータセットは <cite>pyvista.examples.planets.load_moon</cite> 関数で取得することができます．
+PyVistaでは複数オブジェクトを描画することも可能です．
+複数のオブジェクトを配置する際には <cite>Plotter</cite> オブジェクトを使用します．
+これは， <cite>Matplotlib</cite> の <cite>Figure</cite> オブジェクトに似ています．
+以下のコードを実行して地球と月が表示されたら実行成功です．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+
+<span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_moon</span><span class="p">()</span>
+<span class="n">texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_moon_surface</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="n">texture</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-6" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-6">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-4_00_00.png" src="_images/index-4_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-4_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+</section>
+<section id="id5">
+<h2>背景を黒にしてみる<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
+<p>次に背景を夜空にしてみましょう．
+次に背景に夜空の星を追加してみましょう．
+宇宙空間に浮かぶ地球を表現することができました．
+以下のコードを実行して宇宙空間に浮かぶ地球と月が表示されたら実行成功です．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_moon</span><span class="p">()</span>
+<span class="n">texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_moon_surface</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">background_color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="n">texture</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-8">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-5_00_00.png" src="_images/index-5_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-9">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-5_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+</section>
+<section id="id6">
+<h2>カメラを操作してみる<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
+<p>pyvista.Camera クラスは， vtk.vtkCamera クラスに追加機能とPython APIを追加します．
+pyvista.vtkCamera オブジェクトには，ほとんどの場合に適切に機能するデフォルトのライトセットが付属していますが，多くの場合，より実践的なカメラへのアプローチが必要です．
+pyvista.Camera クラスは， vtk.vtkCamera クラスに追加機能とPython APIを追加します． pyvista.vtkCamera オブジェクトには，ほとんどの場合に適切に機能するデフォルトのライトセットが付属していますが，多くの場合，より実践的なカメラへのアプローチが必要です．</p>
+</section>
+<section id="id7">
+<h2>日食のような影を作ってみる<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
+<div class="admonition-todo admonition" id="id8">
+<p class="admonition-title">課題</p>
+<p>日食で光の表現をする．</p>
+</div>
+<p>指向性ライトを使用すると，複雑なライティングシナリオを作成できます．
+たとえば，ライトをアクター(この場合は球体)の真上に配置して，その真下にシャドウを作成できます．
+次の例では，位置ライトを使用して，ライトの円錐角度と指数値を制御し，球体の下に日食のようなシャドウを作成します．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+
+<span class="n">plotter</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">(</span><span class="n">lighting</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">800</span><span class="p">))</span>
+
+<span class="n">light</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Light</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">show_actor</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">positional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="n">cone_angle</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">exponent</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">intensity</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add_light</span><span class="p">(</span><span class="n">light</span><span class="p">)</span>
+
+<span class="n">sphere</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Sphere</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">sphere</span><span class="p">,</span> <span class="n">ambient</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">diffuse</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">specular</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+                 <span class="n">specular_power</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">smooth_shading</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="s1">&#39;dodgerblue&#39;</span><span class="p">)</span>
+
+<span class="n">grid</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plane</span><span class="p">(</span><span class="n">i_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">j_size</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">ambient</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">diffuse</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">specular</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="n">plotter</span><span class="o">.</span><span class="n">enable_shadows</span><span class="p">()</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">set_background</span><span class="p">(</span><span class="s1">&#39;darkgrey&#39;</span><span class="p">)</span>
+<span class="n">plotter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-10" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-10">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-6_00_00.png" src="_images/index-6_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-11">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-6_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+</section>
+<section id="id9">
+<h2>太陽の光を表現してみる<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h2>
+<p>前節ではテクスチャマッピングをすることで地球儀を作成しました．
+しかし，もう少しリアリティを演出したいですね．
+そこでこの節では地球儀に背景を設定しライトニングを行うことで太陽の光を表現します．
+PyVistaのLightオブジェクトを使用してレンダリング用のバーチャルライトを設定します．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span>
+<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+
+<span class="n">light</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">Light</span><span class="p">()</span>
+<span class="n">light</span><span class="o">.</span><span class="n">set_direction_angle</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">pl</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">Plotter</span><span class="p">(</span><span class="n">lighting</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">)</span>
+<span class="n">cubemap</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_cubemap_space_16k</span><span class="p">()</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">add_actor</span><span class="p">(</span><span class="n">cubemap</span><span class="o">.</span><span class="n">to_skybox</span><span class="p">())</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">set_environment_texture</span><span class="p">(</span><span class="n">cubemap</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add_light</span><span class="p">(</span><span class="n">light</span><span class="p">)</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_earth</span><span class="p">()</span>
+<span class="n">texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">load_globe_texture</span><span class="p">()</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">texture</span><span class="o">=</span><span class="n">texture</span><span class="p">,</span> <span class="n">smooth_shading</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># mercury.translate((0.0, 0.0, 0.0), inplace=True)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-12" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-12">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-7_00_00.png" src="_images/index-7_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-13">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-7_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+<p>pyvista.Light インスタンスには，ヘッドライト，カメラライト，シーンライトの3つのタイプがあります．
+ヘッドライトは常にカメラの軸に沿って輝き，カメラライトはカメラに対して固定位置を持ち，シーンライトはシーンに対して配置されるため，カメラの周りを移動してもシーンのライティングには影響しません．</p>
+</section>
+<section id="id10">
+<h2>照明をカスタムしてみる<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h2>
+<p>pyvista.Plotter クラスには，既定の照明システム用に次の3つのオプションがあります．</p>
+<ul class="simple">
+<li><p>ヘッドライトと4つのカメラライトで構成されたライトキット</p></li>
+<li><p>カメラの周囲に配置された3つのライトを含む照明システム，</p></li>
+<li><p>照明なし．</p></li>
+</ul>
+<p>メッシュのカラーにエンコードされた深度情報がない場合，正確に表示するには適切なライティング設定が最も重要になります．</p>
+<p>ルーシーエンジェルデータセットをカスタム照明でプロットします．
+&quot;flame&quot; で光をつくります
+シーンライトを作成します．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+<span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_lucy</span><span class="p">()</span>
+<span class="n">flame_light</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Light</span><span class="p">(</span>
+    <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mf">0.886</span><span class="p">,</span> <span class="mf">0.345</span><span class="p">,</span> <span class="mf">0.133</span><span class="p">],</span>
+    <span class="n">position</span><span class="o">=</span><span class="p">[</span><span class="mi">550</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">950</span><span class="p">],</span>
+    <span class="n">intensity</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+    <span class="n">positional</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">cone_angle</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span>
+    <span class="n">attenuation_values</span><span class="o">=</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">scene_light</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Light</span><span class="p">(</span><span class="n">intensity</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">(</span><span class="n">lighting</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">smooth_shading</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add_light</span><span class="p">(</span><span class="n">flame_light</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">add_light</span><span class="p">(</span><span class="n">scene_light</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">background_color</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-14">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-8_00_00.png" src="_images/index-8_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-15">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-8_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+</section>
+<section id="id11">
+<h2>月を地球の周りに回転させてみる<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h2>
+<p>シーンを周回します．
+軌道を描くには，まずシーンを表示し，プロッターを .show(auto_close=False) で開いたままにしておく必要があります．
+また， pv.Plotter(off_screen=True) を設定する必要があるかもしれません．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_st_helens</span><span class="p">()</span><span class="o">.</span><span class="n">warp_by_scalar</span><span class="p">()</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">lighting</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">zoom</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">auto_close</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-16" name="sd-tab-set-8" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-16">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-9_00_00.png" src="_images/index-9_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-17" name="sd-tab-set-8" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-17">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-9_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">generate_orbital_path</span><span class="p">(</span><span class="n">n_points</span><span class="o">=</span><span class="mi">36</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">mesh</span><span class="o">.</span><span class="n">length</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">open_gif</span><span class="p">(</span><span class="s2">&quot;orbit.gif&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">orbit_on_path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">write_frames</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id12">
+<h2>物理ベースレンダリングをしてみる<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h2>
+<p>VTK9は物理ベースレンダリング(PBR)を導入しており，その機能をPyVistaで公開しています．詳細については blog about PBR をお読みください．
+PBRは pyvista.PolyData に対してのみサポートされており， add_mesh の pbr キーワード引数を介して起動できます．また， metallic および roughness 引数を使用してさらに制御できます．
+この機能を，彫像の高品質メッシュを金属のようにレンダリングすることで示しましょう．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+
+<span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+
+<span class="c1"># Load the statue mesh</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_nefertiti</span><span class="p">()</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">rotate_x</span><span class="p">(</span><span class="o">-</span><span class="mf">90.0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># rotate to orient with the skybox</span>
+
+<span class="c1"># Download skybox</span>
+<span class="n">cubemap</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_sky_box_cube_map</span><span class="p">()</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">add_actor</span><span class="p">(</span><span class="n">cubemap</span><span class="o">.</span><span class="n">to_skybox</span><span class="p">())</span>
+<span class="n">p</span><span class="o">.</span><span class="n">set_environment_texture</span><span class="p">(</span><span class="n">cubemap</span><span class="p">)</span>  <span class="c1"># For reflecting the environment off the mesh</span>
+<span class="n">p</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;linen&#39;</span><span class="p">,</span> <span class="n">pbr</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">metallic</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">roughness</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">diffuse</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Define a nice camera perspective</span>
+<span class="n">cpos</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mf">313.40</span><span class="p">,</span> <span class="mf">66.09</span><span class="p">,</span> <span class="mf">1000.61</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="p">(</span><span class="mf">0.018</span><span class="p">,</span> <span class="mf">0.99</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.06</span><span class="p">)]</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">cpos</span><span class="o">=</span><span class="n">cpos</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-18" name="sd-tab-set-9" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-18">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-10_00_00.png" src="_images/index-10_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-19" name="sd-tab-set-9" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-19">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-10_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+</section>
+<section id="minecraft">
+<h2>Minecraftのような洞窟を作成してみる<a class="headerlink" href="#minecraft" title="Link to this heading">¶</a></h2>
+<div class="admonition-todo admonition" id="id13">
+<p class="admonition-title">課題</p>
+<p>フィルタの説明をする．</p>
+</div>
+<p>ここでは， pyvista.core.utilities.features.sample_function() を使用して領域上のPerlinノイズをサンプリングし，ランダムな地表を生成します．
+Minecraftなどのビデオゲームでは，Perlinノイズを使用して地表を作成します．ここでは，Minecraftの &quot;洞窟&quot; に似たボクセル化メッシュを作成します．
+&quot;freq&quot; の値を自由に変更して， &quot;洞窟&quot; の形を変えることができます．
+たとえば，周波数を低くすると，洞穴が大きく拡張します．
+一方，任意の方向の周波数を高くすると，洞穴はより &quot;静脈のように&quot; 見え，開きにくくなります．</p>
+<p>しきい値を変更して，開いている地形または閉じている地形の割合を増減します</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="n">freq</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">noise</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">perlin_noise</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">sample_function</span><span class="p">(</span><span class="n">noise</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">threshold</span><span class="p">(</span><span class="mf">0.02</span><span class="p">)</span>
+<span class="n">mn</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="p">[</span><span class="n">out</span><span class="p">[</span><span class="s1">&#39;scalars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">out</span><span class="p">[</span><span class="s1">&#39;scalars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()]</span>
+<span class="n">clim</span> <span class="o">=</span> <span class="p">(</span><span class="n">mn</span><span class="p">,</span> <span class="n">mx</span> <span class="o">*</span> <span class="mf">1.8</span><span class="p">)</span>
+
+<span class="n">out</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gist_earth_r&#39;</span><span class="p">,</span>
+    <span class="n">background</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+    <span class="n">show_scalar_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">lighting</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">clim</span><span class="o">=</span><span class="n">clim</span><span class="p">,</span>
+    <span class="n">show_edges</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-20" name="sd-tab-set-10" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-20">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-11_00_00.png" src="_images/index-11_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-21" name="sd-tab-set-10" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-21">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-11_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+</section>
+<section id="id14">
+<h2>インタラクティブにパラメータを修正してみる<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h2>
+<div class="admonition-todo admonition" id="id15">
+<p class="admonition-title">課題</p>
+<p>毎回パラメータを修正してPythonを実行すのは面倒であることを伝える．</p>
+</div>
+<p>スライダウィジェットは，
+pyvista.Plotter.add_slider_widget() メソッドおよび pyvista.Plotter.clear_slider_widgets() メソッドによって，
+それぞれ有効および無効にすることができます．
+これは，ほぼすべてのものに使用できる値を制御できるため，最も用途の広いウィジェットの1つです．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">create_mesh</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="n">sphere</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Sphere</span><span class="p">(</span><span class="n">phi_resolution</span><span class="o">=</span><span class="n">res</span><span class="p">,</span> <span class="n">theta_resolution</span><span class="o">=</span><span class="n">res</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">sphere</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sphere&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span>
+
+
+<span class="n">p</span><span class="o">.</span><span class="n">add_slider_widget</span><span class="p">(</span><span class="n">create_mesh</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Resolution&#39;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-22" name="sd-tab-set-11" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-22">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-12_00_00.png" src="_images/index-12_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-23" name="sd-tab-set-11" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-23">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-12_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+</section>
+<section id="id16">
+<h2>外部のファイルからデータを読み込んでみる<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h2>
+<p>glTFファイルをPyVistaのプロッティングシーンに直接インポートできます．
+glTFフォーマットの詳細については， <a class="reference external" href="https://www.khronos.org/gltf/">https://www.khronos.org/gltf/</a> を参照してください．
+まず，サンプルをダウンロードします．
+なお，ここではハイダイナミックレンジのテクスチャを使用していますが，
+これはglTFファイルが一般的に物理ベースのレンダリングを含んでおり，VTK v9がハイダイナミックレンジのテクスチャをサポートしているためです．
+プロッタを設定し，環境テクスチャを有効にします． これは，ダメージを受けたヘルメットの例のように，物理ベースのレンダリングが可能なメッシュに有効です．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span>
+<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+
+<span class="n">helmet_file</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">gltf</span><span class="o">.</span><span class="n">download_damaged_helmet</span><span class="p">()</span>
+<span class="n">texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_dikhololo_night</span><span class="p">()</span>
+
+<span class="n">pl</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">import_gltf</span><span class="p">(</span><span class="n">helmet_file</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">set_environment_texture</span><span class="p">(</span><span class="n">texture</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">zoom</span><span class="p">(</span><span class="mf">1.7</span><span class="p">)</span>
+<span class="n">pl</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-24" name="sd-tab-set-12" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-24">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-13_00_00.png" src="_images/index-13_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-25" name="sd-tab-set-12" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-25">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-13_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+</section>
+<section id="alien-monsters">
+<h2>ALIEN MONSTERSのピクセルアート<a class="headerlink" href="#alien-monsters" title="Link to this heading">¶</a></h2>
+<p>ここでは， pyvista.Box() を使って， ピクセルアート を作ります．
+ピクセル文字列 ソース と ライセンス ．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="kn">from</span> <span class="nn">pyvista.demos</span> <span class="kn">import</span> <span class="n">logo</span>
+<span class="n">alien_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    </span><span class="si">%         %</span>
+<span class="s2">      </span><span class="si">%     %</span>
+<span class="s2">    </span><span class="si">% %</span><span class="s2"> </span><span class="si">% %</span><span class="s2"> </span><span class="si">% %</span>
+<span class="s2">  </span><span class="si">% %</span><span class="s2">   </span><span class="si">% %</span><span class="s2">   </span><span class="si">% %</span>
+<span class="si">% %</span><span class="s2"> </span><span class="si">% %</span><span class="s2"> </span><span class="si">% %</span><span class="s2"> </span><span class="si">% %</span><span class="s2"> </span><span class="si">% %</span>
+<span class="si">%   %</span><span class="s2"> </span><span class="si">% %</span><span class="s2"> </span><span class="si">% %</span><span class="s2"> </span><span class="si">%   %</span>
+<span class="si">%   %</span><span class="s2">         </span><span class="si">%   %</span>
+<span class="si">%   %</span><span class="s2"> </span><span class="si">%     %</span><span class="s2"> </span><span class="si">%   %</span>
+<span class="s2">      </span><span class="si">%     %</span>
+<span class="s2">    </span><span class="si">%         %</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+<span class="n">alien</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">alien_str</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="mi">1</span><span class="p">:]:</span>  <span class="c1"># skip first linebreak</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">:</span>
+        <span class="n">line</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">20</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">))</span> <span class="o">*</span> <span class="s1">&#39; &#39;</span>
+    <span class="n">alien</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">line</span><span class="p">[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;% &#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">),</span> <span class="mi">2</span><span class="p">)])</span>
+
+<span class="k">def</span> <span class="nf">draw_pixels</span><span class="p">(</span><span class="n">plotter</span><span class="p">,</span> <span class="n">pixels</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">center</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">,</span>
+        <span class="o">-</span><span class="mf">10.0</span><span class="p">,</span>
+        <span class="o">+</span><span class="mf">10.0</span><span class="p">,</span>
+    <span class="p">]</span>
+    <span class="k">for</span> <span class="n">rows</span> <span class="ow">in</span> <span class="n">pixels</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">pixel</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">pixel</span><span class="p">:</span>
+                <span class="n">box</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Box</span><span class="p">(</span><span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">)</span>
+                <span class="n">plotter</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">box</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+            <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">2.0</span>
+            <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="mf">2.0</span>
+        <span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.0</span>
+        <span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.0</span>
+        <span class="n">bounds</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+=</span> <span class="o">-</span><span class="mf">2.0</span>
+        <span class="n">bounds</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+=</span> <span class="o">-</span><span class="mf">2.0</span>
+    <span class="k">return</span> <span class="n">plotter</span>
+
+<span class="c1"># Display MONSTERS</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">draw_pixels</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">alien</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">22.0</span><span class="p">,</span> <span class="mf">22.0</span><span class="p">],</span> <span class="s2">&quot;green&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">draw_pixels</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">alien</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">22.0</span><span class="p">],</span> <span class="s2">&quot;green&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">draw_pixels</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">alien</span><span class="p">,</span> <span class="p">[</span><span class="mf">22.0</span><span class="p">,</span> <span class="mf">22.0</span><span class="p">],</span> <span class="s2">&quot;green&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">draw_pixels</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">alien</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">22.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">draw_pixels</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">alien</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">draw_pixels</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">alien</span><span class="p">,</span> <span class="p">[</span><span class="mf">22.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">draw_pixels</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">alien</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mf">22.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">22.0</span><span class="p">],</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">draw_pixels</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">alien</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">22.0</span><span class="p">],</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">draw_pixels</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">alien</span><span class="p">,</span> <span class="p">[</span><span class="mf">22.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">22.0</span><span class="p">],</span> <span class="s2">&quot;red&quot;</span><span class="p">)</span>
+
+<span class="n">text</span> <span class="o">=</span> <span class="n">logo</span><span class="o">.</span><span class="n">text_3d</span><span class="p">(</span><span class="s2">&quot;ALIEN MONSTERS&quot;</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
+<span class="n">text</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">points</span> <span class="o">*</span> <span class="mf">4.0</span>
+<span class="n">text</span><span class="o">.</span><span class="n">translate</span><span class="p">([</span><span class="o">-</span><span class="mf">20.0</span><span class="p">,</span> <span class="mf">24.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;yellow&quot;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">cpos</span><span class="o">=</span><span class="s2">&quot;xy&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-26" name="sd-tab-set-13" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-26">
+Static Scene</label><div class="sd-tab-content docutils">
+<figure class="align-default">
+<img alt="_images/index-14_00_00.png" src="_images/index-14_00_00.png" />
+</figure>
+</div>
+<input id="sd-tab-item-27" name="sd-tab-set-13" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-27">
+Interactive Scene</label><div class="sd-tab-content docutils">
+
+    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-14_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
+</div>
+</div>
+</section>
+<section id="id17">
+<h2>まとめ<a class="headerlink" href="#id17" title="Link to this heading">¶</a></h2>
+<p>今回はPyVistaを使用したCGの作り方を説明してきました．
+PyVistaのAPIはMatplotlibに影響を受けているため，
+PythonやMatplotlibを使用している人には扱いやすいと思います．
+Matplotlibは2Dプロットに特化しているため，
+3Dの描画に難がありましたが．
+PyVistaを使用することでそれが容易になりました．</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023, Tetsuo Koyama
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">PythonでCGを作りたい人のためのPyVista入門</a><ul>
+<li><a class="reference internal" href="#id1">PyVistaとは</a></li>
+<li><a class="reference internal" href="#id2">インストール</a></li>
+<li><a class="reference internal" href="#id3">地球を作ってみる</a></li>
+<li><a class="reference internal" href="#id4">地球の横に月を追加してみる</a></li>
+<li><a class="reference internal" href="#id5">背景を黒にしてみる</a></li>
+<li><a class="reference internal" href="#id6">カメラを操作してみる</a></li>
+<li><a class="reference internal" href="#id7">日食のような影を作ってみる</a></li>
+<li><a class="reference internal" href="#id9">太陽の光を表現してみる</a></li>
+<li><a class="reference internal" href="#id10">照明をカスタムしてみる</a></li>
+<li><a class="reference internal" href="#id11">月を地球の周りに回転させてみる</a></li>
+<li><a class="reference internal" href="#id12">物理ベースレンダリングをしてみる</a></li>
+<li><a class="reference internal" href="#minecraft">Minecraftのような洞窟を作成してみる</a></li>
+<li><a class="reference internal" href="#id14">インタラクティブにパラメータを修正してみる</a></li>
+<li><a class="reference internal" href="#id16">外部のファイルからデータを読み込んでみる</a></li>
+<li><a class="reference internal" href="#alien-monsters">ALIEN MONSTERSのピクセルアート</a></li>
+<li><a class="reference internal" href="#id17">まとめ</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/documentation_options.js?v=c033477b"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/furo.js?v=32e29ea5"></script>
+    <script src="_static/translations.js?v=4dbe4bdc"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    </body>
+</html>
