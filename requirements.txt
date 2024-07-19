@@ -2,4 +2,4 @@ furo==2024.7.18
 myst-parser==2.0.0
 pyvista[all]>=0.43.1
 sphinx==7.3.7
-sphinx-design==0.5.0
+sphinx-design==0.6.0
