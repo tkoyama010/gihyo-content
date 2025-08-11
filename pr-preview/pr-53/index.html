@@ -7,7 +7,7 @@
 
     <!-- Generated with Sphinx 7.3.7 and Furo 2024.08.06 -->
         <title>DRAFT ドキュメント</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
     <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=302659d7" />
@@ -264,7 +264,7 @@ PyVistaは2024年5月現在，Python3.8以上をサポートしています．</
 </pre></div>
 </div>
 <p>インストール後，Pythonで以下のコードを実行して図のようなウィンドウが表示されることを確認してください．</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pyvista</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pv</span>
 <span class="n">mesh</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Sphere</span><span class="p">()</span>
 <span class="n">mesh</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 </pre></div>
@@ -280,9 +280,7 @@ Static Scene</label><div class="sd-tab-content docutils">
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-1">
 Interactive Scene</label><div class="sd-tab-content docutils">
-
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-1_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
-</div>
+<iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-1_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
 </div>
 <p>これがPyVistaのHello Worldです．
 ウィンドウの表示は環境により多少異なる場合があります．
@@ -295,7 +293,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 テクスチャは自分自身で準備した画像を指定することもできますが，今回はPyVistaで提供されているテクスチャの素材を使用することにしましょう．
 PyVistaではデモンストレーション用のデータがパッケージに同封されており，以下のように取得することができます．
 <cite>Texture</cite> オブジェクトの <cite>plot()</cite> メソッドを使用することで地球のテクスチャが表示されます．</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyvista</span><span class="w"> </span><span class="kn">import</span> <span class="n">examples</span>
 
 <span class="n">texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">load_globe_texture</span><span class="p">()</span>
 <span class="n">texture</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
@@ -312,16 +310,14 @@ Static Scene</label><div class="sd-tab-content docutils">
 <input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-3">
 Interactive Scene</label><div class="sd-tab-content docutils">
-
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-2_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
-</div>
+<iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-2_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
 </div>
 <p>ロードしたテクスチャでテクスチャマッピングを行いましょう．
 テクスチャマッピングの際にはイメージの空間参照を <cite>active_texture_coordinates</cite> に定義する必要があります．
 以下のコードを実行して地球が表示されたら実行成功です．</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pyvista</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pv</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyvista</span><span class="w"> </span><span class="kn">import</span> <span class="n">examples</span>
 
 <span class="n">texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">load_globe_texture</span><span class="p">()</span>
 
@@ -349,9 +345,7 @@ Static Scene</label><div class="sd-tab-content docutils">
 <input id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-5">
 Interactive Scene</label><div class="sd-tab-content docutils">
-
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-3_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
-</div>
+<iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-3_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
 </div>
 <p>Pythonではテクスチャマッピングに使用する式を比較的簡単に記述することができます．
 自分が考えた式を実装してマッピングしてみるのも面白いかもしれません．
@@ -368,8 +362,8 @@ PyVistaでは複数オブジェクトを描画することも可能です．
 複数のオブジェクトを配置する際には <cite>Plotter</cite> オブジェクトを使用します．
 これは， <cite>Matplotlib</cite> の <cite>Figure</cite> オブジェクトに似ています．
 以下のコードを実行して地球と月が表示されたら実行成功です．</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
-<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pyvista</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyvista</span><span class="w"> </span><span class="kn">import</span> <span class="n">examples</span>
 
 <span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
 <span class="n">mesh</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_moon</span><span class="p">()</span>
@@ -389,9 +383,7 @@ Static Scene</label><div class="sd-tab-content docutils">
 <input id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-7">
 Interactive Scene</label><div class="sd-tab-content docutils">
-
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-4_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
-</div>
+<iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-4_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
 </div>
 </section>
 <section id="id5">
@@ -400,8 +392,8 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 次に背景に夜空の星を追加してみましょう．
 宇宙空間に浮かぶ地球を表現することができました．
 以下のコードを実行して宇宙空間に浮かぶ地球と月が表示されたら実行成功です．</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
-<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pyvista</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyvista</span><span class="w"> </span><span class="kn">import</span> <span class="n">examples</span>
 <span class="n">mesh</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">load_moon</span><span class="p">()</span>
 <span class="n">texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">planets</span><span class="o">.</span><span class="n">download_moon_surface</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">pl</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
@@ -421,9 +413,7 @@ Static Scene</label><div class="sd-tab-content docutils">
 <input id="sd-tab-item-9" name="sd-tab-set-4" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-9">
 Interactive Scene</label><div class="sd-tab-content docutils">
-
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-5_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
-</div>
+<iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-5_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
 </div>
 </section>
 <section id="id6">
@@ -441,7 +431,7 @@ pyvista.Camera クラスは， vtk.vtkCamera クラスに追加機能とPython A
 <p>指向性ライトを使用すると，複雑なライティングシナリオを作成できます．
 たとえば，ライトをアクター(この場合は球体)の真上に配置して，その真下にシャドウを作成できます．
 次の例では，位置ライトを使用して，ライトの円錐角度と指数値を制御し，球体の下に日食のようなシャドウを作成します．</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pyvista</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pv</span>
 
 <span class="n">plotter</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">(</span><span class="n">lighting</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">window_size</span><span class="o">=</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">800</span><span class="p">))</span>
 
@@ -473,9 +463,7 @@ Static Scene</label><div class="sd-tab-content docutils">
 <input id="sd-tab-item-11" name="sd-tab-set-5" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-11">
 Interactive Scene</label><div class="sd-tab-content docutils">
-
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-6_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
-</div>
+<iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-6_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
 </div>
 </section>
 <section id="id9">
@@ -484,8 +472,8 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 しかし，もう少しリアリティを演出したいですね．
 そこでこの節では地球儀に背景を設定しライトニングを行うことで太陽の光を表現します．
 PyVistaのLightオブジェクトを使用してレンダリング用のバーチャルライトを設定します．</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span>
-<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pyvista</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyvista</span><span class="w"> </span><span class="kn">import</span> <span class="n">examples</span>
 
 <span class="n">light</span> <span class="o">=</span> <span class="n">pyvista</span><span class="o">.</span><span class="n">Light</span><span class="p">()</span>
 <span class="n">light</span><span class="o">.</span><span class="n">set_direction_angle</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">)</span>
@@ -513,9 +501,7 @@ Static Scene</label><div class="sd-tab-content docutils">
 <input id="sd-tab-item-13" name="sd-tab-set-6" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-13">
 Interactive Scene</label><div class="sd-tab-content docutils">
-
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-7_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
-</div>
+<iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-7_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
 </div>
 <p>pyvista.Light インスタンスには，ヘッドライト，カメラライト，シーンライトの3つのタイプがあります．
 ヘッドライトは常にカメラの軸に沿って輝き，カメラライトはカメラに対して固定位置を持ち，シーンライトはシーンに対して配置されるため，カメラの周りを移動してもシーンのライティングには影響しません．</p>
@@ -532,8 +518,8 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <p>ルーシーエンジェルデータセットをカスタム照明でプロットします．
 &quot;flame&quot; で光をつくります
 シーンライトを作成します．</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
-<span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyvista</span><span class="w"> </span><span class="kn">import</span> <span class="n">examples</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pyvista</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pv</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_lucy</span><span class="p">()</span>
 <span class="n">flame_light</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Light</span><span class="p">(</span>
     <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mf">0.886</span><span class="p">,</span> <span class="mf">0.345</span><span class="p">,</span> <span class="mf">0.133</span><span class="p">],</span>
@@ -564,9 +550,7 @@ Static Scene</label><div class="sd-tab-content docutils">
 <input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-15">
 Interactive Scene</label><div class="sd-tab-content docutils">
-
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-8_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
-</div>
+<iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-8_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
 </div>
 </section>
 <section id="id11">
@@ -574,8 +558,8 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <p>シーンを周回します．
 軌道を描くには，まずシーンを表示し，プロッターを .show(auto_close=False) で開いたままにしておく必要があります．
 また， pv.Plotter(off_screen=True) を設定する必要があるかもしれません．</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
-<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pyvista</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyvista</span><span class="w"> </span><span class="kn">import</span> <span class="n">examples</span>
 
 <span class="n">mesh</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_st_helens</span><span class="p">()</span><span class="o">.</span><span class="n">warp_by_scalar</span><span class="p">()</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
@@ -595,9 +579,7 @@ Static Scene</label><div class="sd-tab-content docutils">
 <input id="sd-tab-item-17" name="sd-tab-set-8" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-17">
 Interactive Scene</label><div class="sd-tab-content docutils">
-
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-9_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
-</div>
+<iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-9_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
 </div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">generate_orbital_path</span><span class="p">(</span><span class="n">n_points</span><span class="o">=</span><span class="mi">36</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="n">mesh</span><span class="o">.</span><span class="n">length</span><span class="p">)</span>
 <span class="n">p</span><span class="o">.</span><span class="n">open_gif</span><span class="p">(</span><span class="s2">&quot;orbit.gif&quot;</span><span class="p">)</span>
@@ -611,10 +593,10 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 <p>VTK9は物理ベースレンダリング(PBR)を導入しており，その機能をPyVistaで公開しています．詳細については blog about PBR をお読みください．
 PBRは pyvista.PolyData に対してのみサポートされており， add_mesh の pbr キーワード引数を介して起動できます．また， metallic および roughness 引数を使用してさらに制御できます．
 この機能を，彫像の高品質メッシュを金属のようにレンダリングすることで示しましょう．</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">product</span>
 
-<span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
-<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pyvista</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyvista</span><span class="w"> </span><span class="kn">import</span> <span class="n">examples</span>
 
 <span class="c1"># Load the statue mesh</span>
 <span class="n">mesh</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_nefertiti</span><span class="p">()</span>
@@ -645,9 +627,7 @@ Static Scene</label><div class="sd-tab-content docutils">
 <input id="sd-tab-item-19" name="sd-tab-set-9" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-19">
 Interactive Scene</label><div class="sd-tab-content docutils">
-
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-10_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
-</div>
+<iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-10_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
 </div>
 </section>
 <section id="minecraft">
@@ -662,7 +642,7 @@ Minecraftなどのビデオゲームでは，Perlinノイズを使用して地�
 たとえば，周波数を低くすると，洞穴が大きく拡張します．
 一方，任意の方向の周波数を高くすると，洞穴はより &quot;静脈のように&quot; 見え，開きにくくなります．</p>
 <p>しきい値を変更して，開いている地形または閉じている地形の割合を増減します</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pyvista</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pv</span>
 <span class="n">freq</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">noise</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">perlin_noise</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">freq</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
 <span class="n">grid</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">sample_function</span><span class="p">(</span><span class="n">noise</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="o">-</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
@@ -691,9 +671,7 @@ Static Scene</label><div class="sd-tab-content docutils">
 <input id="sd-tab-item-21" name="sd-tab-set-10" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-21">
 Interactive Scene</label><div class="sd-tab-content docutils">
-
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-11_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
-</div>
+<iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-11_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
 </div>
 </section>
 <section id="id14">
@@ -706,10 +684,10 @@ Interactive Scene</label><div class="sd-tab-content docutils">
 pyvista.Plotter.add_slider_widget() メソッドおよび pyvista.Plotter.clear_slider_widgets() メソッドによって，
 それぞれ有効および無効にすることができます．
 これは，ほぼすべてのものに使用できる値を制御できるため，最も用途の広いウィジェットの1つです．</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pyvista</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pv</span>
 <span class="n">p</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">()</span>
 
-<span class="k">def</span> <span class="nf">create_mesh</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_mesh</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
     <span class="n">res</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
     <span class="n">sphere</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Sphere</span><span class="p">(</span><span class="n">phi_resolution</span><span class="o">=</span><span class="n">res</span><span class="p">,</span> <span class="n">theta_resolution</span><span class="o">=</span><span class="n">res</span><span class="p">)</span>
     <span class="n">p</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">sphere</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sphere&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -731,9 +709,7 @@ Static Scene</label><div class="sd-tab-content docutils">
 <input id="sd-tab-item-23" name="sd-tab-set-11" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-23">
 Interactive Scene</label><div class="sd-tab-content docutils">
-
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-12_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
-</div>
+<iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-12_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
 </div>
 </section>
 <section id="id16">
@@ -744,8 +720,8 @@ glTFフォーマットの詳細については， <a class="reference external" 
 なお，ここではハイダイナミックレンジのテクスチャを使用していますが，
 これはglTFファイルが一般的に物理ベースのレンダリングを含んでおり，VTK v9がハイダイナミックレンジのテクスチャをサポートしているためです．
 プロッタを設定し，環境テクスチャを有効にします． これは，ダメージを受けたヘルメットの例のように，物理ベースのレンダリングが可能なメッシュに有効です．</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span>
-<span class="kn">from</span> <span class="nn">pyvista</span> <span class="kn">import</span> <span class="n">examples</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pyvista</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyvista</span><span class="w"> </span><span class="kn">import</span> <span class="n">examples</span>
 
 <span class="n">helmet_file</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">gltf</span><span class="o">.</span><span class="n">download_damaged_helmet</span><span class="p">()</span>
 <span class="n">texture</span> <span class="o">=</span> <span class="n">examples</span><span class="o">.</span><span class="n">download_dikhololo_night</span><span class="p">()</span>
@@ -768,17 +744,15 @@ Static Scene</label><div class="sd-tab-content docutils">
 <input id="sd-tab-item-25" name="sd-tab-set-12" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-25">
 Interactive Scene</label><div class="sd-tab-content docutils">
-
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-13_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
-</div>
+<iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-13_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
 </div>
 </section>
 <section id="alien-monsters">
 <h2>ALIEN MONSTERSのピクセルアート<a class="headerlink" href="#alien-monsters" title="Link to this heading">¶</a></h2>
 <p>ここでは， pyvista.Box() を使って， ピクセルアート を作ります．
 ピクセル文字列 ソース と ライセンス ．</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pyvista</span> <span class="k">as</span> <span class="nn">pv</span>
-<span class="kn">from</span> <span class="nn">pyvista.demos</span> <span class="kn">import</span> <span class="n">logo</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pyvista</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyvista.demos</span><span class="w"> </span><span class="kn">import</span> <span class="n">logo</span>
 <span class="n">alien_str</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">    </span><span class="si">%         %</span>
 <span class="s2">      </span><span class="si">%     %</span>
@@ -801,7 +775,7 @@ Interactive Scene</label><div class="sd-tab-content docutils">
         <span class="n">line</span> <span class="o">+=</span> <span class="p">(</span><span class="mi">20</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">))</span> <span class="o">*</span> <span class="s1">&#39; &#39;</span>
     <span class="n">alien</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">line</span><span class="p">[</span><span class="n">i</span> <span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;% &#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">),</span> <span class="mi">2</span><span class="p">)])</span>
 
-<span class="k">def</span> <span class="nf">draw_pixels</span><span class="p">(</span><span class="n">plotter</span><span class="p">,</span> <span class="n">pixels</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">draw_pixels</span><span class="p">(</span><span class="n">plotter</span><span class="p">,</span> <span class="n">pixels</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
     <span class="n">bounds</span> <span class="o">=</span> <span class="p">[</span>
         <span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">,</span>
         <span class="n">center</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">,</span>
@@ -854,9 +828,7 @@ Static Scene</label><div class="sd-tab-content docutils">
 <input id="sd-tab-item-27" name="sd-tab-set-13" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-27">
 Interactive Scene</label><div class="sd-tab-content docutils">
-
-    <iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-14_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe>
-</div>
+<iframe src='_static/static_viewer.html?fileURL=../_images/plot_directive/index-14_00_00.vtksz' width='100%%' height='400px' frameborder='0'></iframe></div>
 </div>
 </section>
 <section id="id17">
